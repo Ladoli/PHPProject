@@ -8,6 +8,8 @@ Tentative project work distribution:
 
 Emi -> SASS exploration and using SASS in the project.
 
+Emi -> Page Class Logic
+
 Angelo -> Grid CSS in the project
 
 Angelo -> Page logic
