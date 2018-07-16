@@ -7,6 +7,11 @@ Object1mapper and object1 files will need to be duplicated and modified to handl
 Tentative project work distribution:
 
 Emi -> SASS exploration and using SASS in the project.
+
 Angelo -> Grid CSS in the project
+
 Angelo -> Page logic
-Colton -> CRUD operations on object
+
+Colton -> CRUD operations on objects
+
+Ignore -> PDO, Config
