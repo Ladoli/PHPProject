@@ -1,7 +1,7 @@
 <?php
 
 
-class objectMapper    {
+class object1Mapper    {
 
     private $lastInsertId = null;
     private $attributes = null;
