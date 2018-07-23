@@ -3,18 +3,19 @@
 class Owner {
 
     //Attributes
-    public $id = "";
+    public $id = 0;
     public $name = "";
     public $city = "";
     public $gender = "";
-    public $famSize = "";
+    public $occupation = "";
+    public $familySize = "";
 
     //Default constructor method
-    function __construct($newName, $newGen, $newCity, $newFam)   {
+    function __construct($newName, $newCity, $newGender, $newFamilySize)   {
         $this->name = $newName;
-        $this->gender = $newAddress;
         $this->city = $newCity;
-        $this->$famSize = $newFam;
+        $this->gender = $newGender;
+        $this->familySize = $newFamilySize;
     }
 }
 

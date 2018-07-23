@@ -25,7 +25,7 @@ if(isset($_GET['tables'])){
 
 //Check GET data to understand what Table we are dealing with and create an ObjectMapper based on that
 if($tableName === "Transportation Type"){
-    $objMapper = new object1Mapper("Transportation Type");
+    $objMapper = new ownerMapper("Transportation Type");
     if (empty($_POST))  {
 
     } else {
@@ -54,7 +54,7 @@ if($tableName === "Transportation Type"){
 
     }
 }elseif($tableName === "Owner"){
-    $objMapper = new object1Mapper("Owner");
+    $objMapper = new ownerMapper("Owner");
     if (empty($_POST))  {
 
     } else {
@@ -84,7 +84,7 @@ if($tableName === "Transportation Type"){
     }
 }else{
     //Create a default table
-    $objMapper = new object1Mapper("Vehicle");
+    $objMapper = new ownerMapper("Vehicle");
     if (empty($_POST))  {
 
     } else {
@@ -125,7 +125,7 @@ if (isset($_GET['action']) && $_GET['action'] == "delete" && isset($_GET['id']))
 
 $page->tableChooser();
 
-$page->addForm(new Object1);
+$page->addForm(new Owner("test","test","test","test"));
 
 $page->displayData($objMapper->listAll());
 
