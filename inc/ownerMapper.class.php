@@ -14,7 +14,7 @@ class ownerMapper    {
     function create($postdata)  {
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
-        $owner = new Owner()$postdata['name'], $postdata['city'], $postdata['gender'], $postdata['familySize']);
+        $owner = new Owner($postdata['name'], $postdata['city'], $postdata['gender'], $postdata['familySize']);
 
         //new PDOAgent
         $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost", "Owner");
