@@ -130,8 +130,7 @@ $page->addForm(new Object1);
 $page->displayData($objMapper->listAll());
 
 //Display the data
-
-IM A GOLDFISH
+$page->displayData($objMapper->listAll());
 
 //Footer
 $page->footer();
