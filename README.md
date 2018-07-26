@@ -17,3 +17,9 @@ Angelo -> Page logic
 Colton -> CRUD operations on objects
 
 Ignore -> PDO, Config
+
+Angelo -> External Call to API
+
+Colton -> Search
+
+Emi -> Data Validation
