@@ -35,11 +35,11 @@ if($tableName === "Transportation Type"){
     } else {
 
         //Verify the post data
-        if (   empty($_POST['type'])if($tableName === "Transportation Type"){
+        if (   empty($_POST['type'])
             || empty($_POST['name'])
             || empty($_POST['description'])
-            || empty($_POST['wheels']) )
-            || empty($_POST['fuel']){
+            || empty($_POST['wheels']) 
+            || empty($_POST['fuel']) ){
 
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
