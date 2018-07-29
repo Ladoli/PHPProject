@@ -1,9 +1,11 @@
 <?php
 
-class ownerMapper    {
+
+class VehicleMapper    {
 
     private $lastInsertId = null;
     private $attributes = null;
+
 
     //We will use this to construct our queries. Particularly the "FROM" part of queries
 
@@ -11,27 +13,24 @@ class ownerMapper    {
     function create($postdata)  {
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
-        $transportationType = new TransportationType(
-            $postdata['name'], $postdata['description'], $postdata['wheels'], $postdata['fuel']
-          );
+        $vehicle = new vehicle($postdata['makeModel'], $postdata['color'], $postdata['ownerID'], $postdata['typeId']);
 
         //new PDOAgent
-        $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost",DBNAME);
+        $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost", DBNAME);
 
         //Connect to the Database
         $p->connect();
 
         //Setup the Bind Parameters
         $bindParams = [
-          'name' => $transportationType->name,
-          'description' => $transportationType->description,
-          'wheels' => $transportationType->wheels,
-          'fuelType' => $transportationType->fuel
-        ];
+        'makeModel' => $vehicle->makeModel,
+        'color' => $vehicle->color,
+        'ownerId' => $vehicle->ownerId,
+        'typeId' => $vehicle->typeId];
 
         //Get the results of the insert query (rows inserted)
-        $results = $p->query("INSERT INTO TransportationType (Name, Description, Wheels, FuelType)
-            VALUES (:name, :description, :wheels, :fuelType);", $bindParams);
+        $results = $p->query("INSERT INTO Vehicles (MakeModel, Color, OwnerID, TypeID)
+            VALUES ( :makeModel, :color, :ownerId, :typeId);", $bindParams);
         //copy the last inserted id
         $this->lastInsertId = $p->lastInsertId;
 
@@ -50,10 +49,10 @@ class ownerMapper    {
 
     function read($id) {
         //Get the data of Object with passed ID. Return object Object1 constructed with the data
-        $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
+        $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
         $bindParams = ['id'=>$id];
-        $results = $p->query("SELECT * FROM TransportationType WHERE TransID = :id",$bindParams);
+        $results = $p->query("SELECT * FROM Vehicles WHERE VehicleID = :id",$bindParams);
 
         $p->disconnect();
         return $results[0];
@@ -65,27 +64,27 @@ class ownerMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
 
-        $bindParams = ['TransID' =>$objectToUpdate['id'],
-            'Name' =>$objectToUpdate['name'],
-            'Description' =>$objectToUpdate['description'],
-            'Wheels' =>$objectToUpdate['wheels'],
-            'FuelType' =>$objectToUpdate['fuel']
+        $bindParams = ['VehicleID' =>$objectToUpdate['id'],
+            'MakeModel' =>$objectToUpdate['makeModel'],
+            'Color' =>$objectToUpdate['color'],
+            'OwnerID' =>$objectToUpdate['ownerId'],
+            'TypeID' =>$objectToUpdate['typeId']
         ];
 
-        $p->query("UPDATE TransportationType SET Name= :Name, Description= :Description,
-            Wheels= :Wheels, FuelType= :FuelType WHERE TransID = :TransID", $bindParams);
+        $p->query("UPDATE Vehicles SET MakeModel= :MakeModel, Color= :Color,
+            OwnerID= :OwnerID, TypeID= :TypeID WHERE VehicleID = :VehicleID", $bindParams);
         echo $p->rowcount."Rows Affected<BR>";
 
         $p->disconnect();
-        return $transportationType['id'];
+        return $vehicle['id'];
     }
 
     function delete($id)   {
         //Delete the data of the object with the passed ID
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
-        $bindParams = ['transId'=>$id];
-        $results = $p->query("DELETE FROM TransportationType WHERE TransID = :transId", $bindParams);
+        $bindParams = ['vehicleId'=>$id];
+        $results = $p->query("DELETE FROM Vehicles WHERE VehicleID = :vehicleId", $bindParams);
         echo $p->rowcount."Rows Affected<BR>";
 
         $p->disconnect();
@@ -102,7 +101,7 @@ class ownerMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = [];
-        $results = $p->query("SELECT *  FROM TransportationType;",$bindParams);
+        $results = $p->query("SELECT *  FROM Vehicles;",$bindParams);
 
         $p->disconnect();
         return $results;

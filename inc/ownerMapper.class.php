@@ -1,7 +1,7 @@
 <?php
 
 
-class ownerMapper    {
+class OwnerMapper    {
 
     private $lastInsertId = null;
     private $attributes = null;
