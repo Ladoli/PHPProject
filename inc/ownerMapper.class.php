@@ -5,8 +5,6 @@ class OwnerMapper    {
 
     private $lastInsertId = null;
     private $attributes = null;
-    public $tableName = "Owner";
-    public $dbName = "temporary";
 
     //We will use this to construct our queries. Particularly the "FROM" part of queries
 
