@@ -35,12 +35,11 @@ if($tableName === "Transportation Type"){
     } else {
 
         //Verify the post data
-        if (   empty($_POST['type'])
-            || empty($_POST['name'])
-            || empty($_POST['description'])
-            || empty($_POST['wheels'])
-            || empty($_POST['fuel']) ){
-
+        if (   !isset($_POST['name'])
+            || !isset($_POST['description'])
+            || !isset($_POST['wheels'])
+            || !isset($_POST['fuel']) ){
+              echo var_dump($_POST);
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
@@ -65,10 +64,10 @@ if($tableName === "Transportation Type"){
     } else {
 
         //Verify the post data
-        if (   empty($_POST['name'])
-            || empty($_POST['city'])
-            || empty($_POST['gender'])
-            || empty($_POST['family']) )  {
+        if (   !isset($_POST['name'])
+            || !isset($_POST['city'])
+            || !isset($_POST['gender'])
+            || !isset($_POST['family']) )  {
 
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
@@ -95,10 +94,10 @@ if($tableName === "Transportation Type"){
     } else {
 
         //Verify the post data
-        if (   empty($_POST['makeModel'])
-            || empty($_POST['color'])
-            || empty($_POST['owner'])
-            || empty($_POST['type']) )  {
+        if (   !isset($_POST['makeModel'])
+            || !isset($_POST['color'])
+            || !isset($_POST['owner'])
+            || !isset($_POST['type']) )  {
 
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
