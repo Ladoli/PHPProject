@@ -1,12 +1,10 @@
 <?php
 
 
-class ownerMapper    {
+class OwnerMapper    {
 
     private $lastInsertId = null;
     private $attributes = null;
-    public $tableName = "Owner";
-    public $dbName = "temporary";
 
     //We will use this to construct our queries. Particularly the "FROM" part of queries
 
@@ -31,7 +29,7 @@ class ownerMapper    {
         ];
 
         //Get the results of the insert query (rows inserted)
-        $results = $p->query("INSERT INTO Owners(Name, City, Gender, Family Size)
+        $results = $p->query("INSERT INTO Owners(Name, City, Gender, FamilySize)
             VALUES ( :name, :city, :Gender, :familySize);", $bindParams);
         //copy the last inserted id
         $this->lastInsertId = $p->lastInsertId;
@@ -86,7 +84,7 @@ class ownerMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
         $bindParams = ['ownerId'=>$id];
-        $results = $p->query("DELETE FROM Owners WHERE id = :ownerId", $bindParams);
+        $results = $p->query("DELETE FROM Owners WHERE OwnerID = :ownerId", $bindParams);
         echo $p->rowcount."Rows Affected<BR>";
 
         $p->disconnect();

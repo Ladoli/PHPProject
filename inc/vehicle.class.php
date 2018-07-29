@@ -1,5 +1,5 @@
 <?php
-class vehicle {
+class Vehicle {
 
     //Attributes
     public $id = 0;

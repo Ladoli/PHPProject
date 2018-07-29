@@ -1,7 +1,7 @@
 <?php
 
 
-class vehicleMapper    {
+class VehicleMapper    {
 
     private $lastInsertId = null;
     private $attributes = null;

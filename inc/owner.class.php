@@ -7,7 +7,6 @@ class Owner {
     public $name = "";
     public $city = "";
     public $gender = "";
-    public $occupation = "";
     public $familySize = "";
 
     //Default constructor method

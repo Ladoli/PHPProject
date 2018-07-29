@@ -4,8 +4,12 @@
 
 require_once('inc/config.inc.php');
 require_once('inc/owner.class.php');
+require_once('inc/transportationType.class.php');
+require_once('inc/vehicle.class.php');
 require_once('inc/pdo.inc.php');
 require_once('inc/ownerMapper.class.php');
+require_once('inc/transportationTypeMapper.class.php');
+require_once('inc/vehicleMapper.class.php');
 require_once('inc/page.inc.php');
 
 $page = new Page();
@@ -25,7 +29,7 @@ if(isset($_GET['tables'])){
 
 //Check GET data to understand what Table we are dealing with and create an ObjectMapper based on that
 if($tableName === "Transportation Type"){
-    $objMapper = new ownerMapper("Transportation Type");
+    $objMapper = new TransportationTypeMapper();
     if (empty($_POST))  {
 
     } else {
@@ -34,7 +38,8 @@ if($tableName === "Transportation Type"){
         if (   empty($_POST['type'])
             || empty($_POST['name'])
             || empty($_POST['description'])
-            || empty($_POST['wheels']) )  {
+            || empty($_POST['wheels'])
+            || empty($_POST['fuel']) ){
 
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
@@ -54,7 +59,7 @@ if($tableName === "Transportation Type"){
 
     }
 }elseif($tableName === "Owner"){
-    $objMapper = new ownerMapper("Owner");
+    $objMapper = new OwnerMapper();
     if (empty($_POST))  {
 
     } else {
@@ -84,7 +89,7 @@ if($tableName === "Transportation Type"){
     }
 }else{
     //Create a default table
-    $objMapper = new ownerMapper("Vehicle");
+    $objMapper = new VehicleMapper();
     if (empty($_POST))  {
 
     } else {
@@ -125,9 +130,20 @@ if (isset($_GET['action']) && $_GET['action'] == "delete" && isset($_GET['id']))
 
 $page->tableChooser();
 
-$page->addForm(new Owner("test","test","test","test"));
 
-$page->displayData($objMapper->listAll());
+if($tableName === "Transportation Type"){
+  $page->addTransportationTypeForm();
+  $page->displaytransTypeData($objMapper->listAll());
+}elseif($tableName === "Owner"){
+  $page->addOwnerForm();
+  $page->displayOwnerData($objMapper->listAll());
+}else{
+  $page->addVehicleForm();
+  $page->displayVehicleData($objMapper->listAll());
+}
+
+
+
 
 //Display the data
 

@@ -1,6 +1,7 @@
+
 <?php
 
-class ownerMapper    {
+class TransportationTypeMapper    {
 
     private $lastInsertId = null;
     private $attributes = null;
@@ -30,8 +31,8 @@ class ownerMapper    {
         ];
 
         //Get the results of the insert query (rows inserted)
-        $results = $p->query("INSERT INTO TransportationType (Name, Description, Wheels, FuelType)
-            VALUES (:typeId, :name, :description, :wheels, :fuelType);", $bindParams);
+        $results = $p->query("INSERT INTO TransportationTypes (Name, Description, Wheels, FuelType)
+            VALUES (:name, :description, :wheels, :fuelType);", $bindParams);
         //copy the last inserted id
         $this->lastInsertId = $p->lastInsertId;
 
@@ -53,7 +54,7 @@ class ownerMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = ['id'=>$id];
-        $results = $p->query("SELECT * FROM TransportationType WHERE TransID = :id",$bindParams);
+        $results = $p->query("SELECT * FROM TransportationTypes WHERE TransID = :id",$bindParams);
 
         $p->disconnect();
         return $results[0];
@@ -72,7 +73,7 @@ class ownerMapper    {
             'FuelType' =>$objectToUpdate['fuel']
         ];
 
-        $p->query("UPDATE TransportationType SET Name= :Name, Description= :Description,
+        $p->query("UPDATE TransportationTypes SET Name= :Name, Description= :Description,
             Wheels= :Wheels, FuelType= :FuelType WHERE TransID = :TransID", $bindParams);
         echo $p->rowcount."Rows Affected<BR>";
 
@@ -85,7 +86,7 @@ class ownerMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = ['transId'=>$id];
-        $results = $p->query("DELETE FROM TransportationType WHERE TransID = :transId", $bindParams);
+        $results = $p->query("DELETE FROM TransportationTypes WHERE TransID = :transId", $bindParams);
         echo $p->rowcount."Rows Affected<BR>";
 
         $p->disconnect();
@@ -102,7 +103,7 @@ class ownerMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = [];
-        $results = $p->query("SELECT *  FROM TransportationType;",$bindParams);
+        $results = $p->query("SELECT *  FROM TransportationTypes;",$bindParams);
 
         $p->disconnect();
         return $results;
