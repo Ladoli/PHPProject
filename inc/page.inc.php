@@ -95,7 +95,7 @@ class Page {
         <INPUT TYPE="text" NAME="wheels" ID="wheels">
 
         <LABEL FOR="fuel">Fuel</LABEL>
-        <INPUT TYPE="text" NAME="fuel" ID="fuel" ARIA-DESCTIBEDBY="fuelHelp">    
+        <INPUT TYPE="text" NAME="fuel" ID="fuel" ARIA-DESCTIBEDBY="fuelHelp">
         <small id="fuelHelp">Gas, Diesel, etc.</small>
 
         <INPUT TYPE="SUBMIT" VALUE="Add Transportation Type">
@@ -244,13 +244,13 @@ class Page {
                 </TR>';
              }
            }?>
-    
+
             </tbody>
             </table>
         <?php
-    
+
         }
-        
+
         function displaytransTypeData($type) { ?>
             <table>
                 <thead>
@@ -282,7 +282,7 @@ class Page {
                 </tbody>
                 </table>
             <?php
-        
+
             }
 }
 ?>
