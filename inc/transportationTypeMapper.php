@@ -31,7 +31,7 @@ class ownerMapper    {
 
         //Get the results of the insert query (rows inserted)
         $results = $p->query("INSERT INTO TransportationType (Name, Description, Wheels, FuelType)
-            VALUES (:typeId, :name, :description, :wheels, :fuelType);", $bindParams);
+            VALUES (:name, :description, :wheels, :fuelType);", $bindParams);
         //copy the last inserted id
         $this->lastInsertId = $p->lastInsertId;
 

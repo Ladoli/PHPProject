@@ -38,8 +38,7 @@ class Page {
 
     <?php }
 
-    function addForm($object){
-        //Perhaps use http://php.net/manual/en/function.get-class.php to assess object name and use a switch statement based on that. Not needed if we make our objects have equal attributes
+    function addOwnerForm(){
        ?>
        <FORM METHOD="POST" ACTION="">
 
@@ -61,19 +60,54 @@ class Page {
             <INPUT TYPE="text" NAME="famSize" ID="famSize" ARIA-DESCTIBEDBY="sizeHelp">
             <small id="sizeHelp">The number of people in your immediate family.</small>
 
-        <INPUT TYPE="SUBMIT" VALUE="Add Customer">
+        <INPUT TYPE="SUBMIT" VALUE="Add Owner">
 
     </FORM>
     <?php }
 
-    function editForm($ownerData){ ?>
+    function addVehicleForm(){
+       ?>
+       <FORM METHOD="POST" ACTION="">
+
+        <LABEL FOR="makeModel">Make & Model</LABEL>
+        <INPUT TYPE="text" NAME="makeModel" ID="makeModel">
+
+        <LABEL FOR="color">Color</LABEL>
+        <INPUT TYPE="text" NAME="color" ID="color">
+
+        <INPUT TYPE="SUBMIT" VALUE="Add Vehicle">
+
+    </FORM>
+    <?php }
+
+    function addTransportationTypeForm(){ ?>
+
+       <FORM METHOD="POST" ACTION="">
+
+        <LABEL FOR="name">Name</LABEL>
+        <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp">
+        <small id="nameHelp">Bus, Plane, etc.</small>
+
+        <LABEL FOR="description">Description</LABEL>
+        <INPUT TYPE="text" NAME="desc" ID="description">
+
+        <LABEL FOR="fuel">Fuel</LABEL>
+        <INPUT TYPE="text" NAME="fuel" ID="fuel" ARIA-DESCTIBEDBY="fuelHelp">    
+        <small id="fuelHelp">Gas, Diesel, etc.</small>
+
+        <INPUT TYPE="SUBMIT" VALUE="Add Transportation Type">
+
+    </FORM>
+    <?php }
+
+    function editOwnerForm($ownerData){ ?>
 
         <FORM METHOD="POST" ACTION="">
 
         <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $ownerData->id; ?>">
 
             <LABEL FOR="name">Name</LABEL>
-            <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $customer->name; ?> ">
+            <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $ownerData->name; ?> ">
             <small id="nameHelp" >Customer first and last name.</small>
 
             <LABEL FOR="city">City</LABEL>
@@ -106,11 +140,47 @@ class Page {
         </FORM>
         <?php }
 
-    function displayData($owners) { ?>
+    function editVehicleForm($vehicleData){ ?>
+
+    <FORM METHOD="POST" ACTION="">
+
+    <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $vehicleData->id; ?>">
+
+        <LABEL FOR="makeModel">Make & Model</LABEL>
+        <INPUT TYPE="text" NAME="makeModel" ID="makeModel" VALUE="<?php echo $vehicleData->makeModel; ?> ">
+
+        <LABEL FOR="color">Color</LABEL>
+        <INPUT TYPE="text" NAME="color" ID="color" VALUE="<?php echo $vehicleData->color; ?>">
+
+        <INPUT TYPE="SUBMIT" VALUE="Edit Vehicle">
+    </FORM>
+    <?php }
+
+    function editTransportationTypeForm($transData){ ?>
+
+        <FORM METHOD="POST" ACTION="">
+
+        <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $transData->id; ?>">
+
+            <LABEL FOR="name">Name</LABEL>
+            <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $transData->name; ?> ">
+            <small id="nameHelp">Bus, Plane, etc.</small>
+
+            <LABEL FOR="description">Description</LABEL>
+            <INPUT TYPE="text" NAME="desc" ID="description" VALUE="<?php echo $transData->description; ?>">
+
+            <LABEL FOR="fuel">Fuel Type</LABEL>
+            <INPUT TYPE="text" NAME="fuel" ID="fuel" VALUE="<?php echo $transData->fuel; ?>">
+
+            <INPUT TYPE="SUBMIT" VALUE="Edit Transportation Type">
+        </FORM>
+        <?php }
+
+    function displayOwnerData($owners) { ?>
     <table>
         <thead>
             <tr>
-            <th>OwnerID#</th>
+            <th>Owner ID</th>
             <th>Name</th>
             <th>City</th>
             <th>Gender</th>
@@ -140,6 +210,73 @@ class Page {
     <?php
 
     }
-
+    function displayVehicleData($vehicles) { ?>
+        <table>
+            <thead>
+                <tr>
+                <th>Vehicle ID</th>
+                <th>Make & Model</th>
+                <th>Color</th>
+                <th>Owner ID</th>
+                <th>Type ID</th>
+                <th>Update</th>
+                <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+            if(!empty($owners)){
+            foreach($vehicles as $vehicle)    {
+                echo '<TR>
+                <TD>'.$vehicle->id.'</TD>
+                <TD>'.$vehicle->makeModel.'</TD>
+                <TD>'.$vehicle->color.'</TD>
+                <TD>'.$vehicle->ownerId.'</TD>
+                <TD>'.$vehicle->typeId.'</TD>
+                <TD>Update</TD>
+                <TD><A HREF="?action=delete&id='.$vehicle->id.'">Delete</A></TD>
+                </TR>';
+             }
+           }?>
+    
+            </tbody>
+            </table>
+        <?php
+    
+        }
+        
+        function displaytransTypeData($type) { ?>
+            <table>
+                <thead>
+                    <tr>
+                    <th>Owner ID</th>
+                    <th>Type ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Fuel</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                if(!empty($owners)){
+                foreach($type as $col)    {
+                    echo '<TR>
+                    <TD>'.$col->id.'</TD>
+                    <TD>'.$col->typeId.'</TD>
+                    <TD>'.$col->name.'</TD>
+                    <TD>'.$col->description.'</TD>
+                    <TD>'.$col->fuel.'</TD>
+                    <TD>Update</TD>
+                    <TD><A HREF="?action=delete&id='.$col->id.'">Delete</A></TD>
+                    </TR>';
+                 }
+               }?>
+                </tbody>
+                </table>
+            <?php
+        
+            }
 }
 ?>
