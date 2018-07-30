@@ -349,55 +349,5 @@ class Page {
             <INPUT TYPE = "SUBMIT" VALUE="Search"> 
             </FORM>
         <?php }
-
-        function searchOwner($term, $owners) { 
-            $term = strtolower($term);
-            $searchList = [];
-
-            foreach ($owners as $owner) {
-                if(strpos(strtolower($owner->Name), $term) !== false){
-                    $searchList[] = $owner;
-                }elseif(strpos(strtolower($owner->City), $term) !== false){
-                    $searchList[] = $owner;
-                }elseif(strpos(strtolower($owner->Gender), $term) !== false){
-                    $searchList[] = $owner;
-                }elseif(strpos(strtolower($owner->FamilySize), $term) !== false){
-                    $searchList[] = $owner;
-                }   
-            }
-            return $searchList;
-        }
-
-        function searchVehicle($term, $vehicles) {
-            $term = strtolower($term);
-            $searchList = [];
-
-            foreach($vehicles as $vehicle) {
-                if(strpos(strtolower($vehicle->MakeModel), $term) !== false){
-                    $filteredSearchList[] = $trans;
-                }elseif(strpos(strtolower($trans->Color), $term) !== false){
-                    $filteredSearchList[] = $trans;
-                }
-            }
-            return $searchList;
-        }
-
-        function searchTransType($term, $transData){
-            $term = strtolower($term);
-            $searchList = [];
-
-            foreach($transData as $trans) {
-                if(strpos(strtolower($trans->Name), $term) !== false){
-                    $filteredSearchList[] = $trans;
-                }   elseif(strpos(strtolower($trans->Description), $term) !== false){
-                    $filteredSearchList[] = $trans;
-                }   elseif(strpos(strtolower($trans->Wheels),     $term) !== false){
-                    $filteredSearchList[] = $trans;
-                }   elseif(strpos(strtolower($trans->FuelType), $term) !== false){
-                    $filteredSearchList[] = $trans;
-                }
-            }
-            return $searchList;
-        }
 }
 ?>

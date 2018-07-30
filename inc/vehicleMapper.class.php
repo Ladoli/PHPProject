@@ -108,6 +108,32 @@ class VehicleMapper    {
         return $results;
     }
 
+    function searchDisplay($term) {
+        $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
+        $p->connect();
+        $bindParams = [];
+        $results = $p->query("SELECT *  FROM Vehicles;",$bindParams);
+
+        $p->disconnect();
+
+        $term = strtolower($term);
+        $searchList = [];
+
+        foreach($results as $result) {
+            if(strpos(strtolower($result->MakeModel), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->Color), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->OwnerID), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->TypeID), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->VehicleID), $term) !== false){
+                $searchList[] = $result;
+            }
+        }
+        return $searchList;
+    }
 }
 
 ?>

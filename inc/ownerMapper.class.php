@@ -108,6 +108,34 @@ class OwnerMapper    {
         return $results;
     }
 
+    function searchDisplay($term) {
+        $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
+        $p->connect();
+        $bindParams = [];
+        $results = $p->query("SELECT *  FROM Owners;",$bindParams);
+
+        $p->disconnect();
+
+        $term = strtolower($term);
+        $searchList = [];
+
+        foreach($results as $result) {
+            if(strpos(strtolower($result->Name), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->City), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->Gender), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->FamilySize), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->OwnerID), $term) !== false){
+                $searchList[] = $result;
+            }   
+        }
+        return $searchList;
+    }
+
+
 }
 
 ?>

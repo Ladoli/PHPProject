@@ -109,6 +109,33 @@ class TransportationTypeMapper    {
 
         return $results;
     }
+    
+    function searchDisplay($term){
+        $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
+        $p->connect();
+        $bindParams = [];
+        $results = $p->query("SELECT *  FROM TransportationTypes;",$bindParams);
+
+        $p->disconnect();
+
+        $term = strtolower($term);
+        $searchList = [];
+
+        foreach($results as $result) {
+            if(strpos(strtolower($result->Name), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->Description), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->Wheels),     $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->FuelType), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->TransID), $term) !== false){
+                $searchList[] = $result;
+            }
+        }
+        return $searchList;
+    }
 
 }
 

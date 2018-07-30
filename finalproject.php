@@ -33,19 +33,22 @@ if($tableName === "Transportation Type"){
     if (empty($_POST))  {
 
     } else {
-
+        if(isset($_POST['searchTerm'])){
+            $page->displayTransTypeData($objMapper->searchDisplay($_POST['searchTerm']));
+            exit;
+        }
         //Verify the post data
-        if (   !isset($_POST['name'])
+        elseif (!isset($_POST['name'])
             || !isset($_POST['description'])
             || !isset($_POST['wheels'])
-            || !isset($_POST['fuel']) ){
+            || !isset($_POST['fuel'])){
               
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
 
             exit;
-        } else {
+        }else {
 
                 //We have the right data, lets go ahead and add the customer via the customer mapper
                 unset($_GET['id']);
@@ -62,9 +65,12 @@ if($tableName === "Transportation Type"){
     if (empty($_POST))  {
 
     } else {
-    
+        if(isset($_POST['searchTerm'])){
+            $page->displayOwnerData($objMapper->searchDisplay($_POST['searchTerm']));
+            exit;
+        }
         //Verify the post data
-        if (   !isset($_POST['name'])
+        elseif (!isset($_POST['name'])
             || !isset($_POST['city'])
             || !isset($_POST['gender'])
             || !isset($_POST['familySize']) )  {
@@ -92,8 +98,12 @@ if($tableName === "Transportation Type"){
     if (empty($_POST))  {
 
     } else {
+        if(isset($_POST['searchTerm'])){
+            $page->displayVehicleData($objMapper->searchDisplay($_POST['searchTerm']));
+            exit;
+        }
         //Verify the post data
-        if (   !isset($_POST['makeModel'])
+        elseif (!isset($_POST['makeModel'])
             || !isset($_POST['color'])
             || !isset($_POST['typeId'])
             || !isset($_POST['ownerId']))  {
@@ -129,8 +139,8 @@ $page->tableChooser();
 
 //Display the data
 if($tableName === "Transportation Type"){
-  $page->addTransTypeForm();
-  $page->displayTransTypeData($objMapper->listAll());
+    $page->addTransTypeForm();
+    $page->displayTransTypeData($objMapper->listAll());
 }elseif($tableName === "Owner"){
   $page->addOwnerForm();
   $page->displayOwnerData($objMapper->listAll());
