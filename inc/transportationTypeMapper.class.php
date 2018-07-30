@@ -31,7 +31,7 @@ class TransportationTypeMapper    {
         ];
 
         //Get the results of the insert query (rows inserted)
-        $results = $p->query("INSERT INTO TransportationType (Name, Description, Wheels, FuelType)
+        $results = $p->query("INSERT INTO TransportationTypes (Name, Description, Wheels, FuelType)
             VALUES (:name, :description, :wheels, :fuelType);", $bindParams);
         //copy the last inserted id
         $this->lastInsertId = $p->lastInsertId;
@@ -54,31 +54,31 @@ class TransportationTypeMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = ['id'=>$id];
-        $results = $p->query("SELECT * FROM TransportationType WHERE TransID = :id",$bindParams);
+        $results = $p->query("SELECT * FROM TransportationTypes WHERE TransID = :id",$bindParams);
 
         $p->disconnect();
         return $results[0];
 
     }
 
-    function update($objectToUpdate)   {
+    function update($tansType)   {
         //Update the data of Object with passed ID
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
 
-        $bindParams = ['TransID' =>$objectToUpdate['id'],
-            'Name' =>$objectToUpdate['name'],
-            'Description' =>$objectToUpdate['description'],
-            'Wheels' =>$objectToUpdate['wheels'],
-            'FuelType' =>$objectToUpdate['fuel']
+        $bindParams = ['TransID'=>$tansType['id'],
+            'Name'=>$tansType['name'],
+            'Description'=>$tansType['description'],
+            'Wheels'=>$tansType['wheels'],
+            'FuelType'=>$tansType['fuel']
         ];
-
-        $p->query("UPDATE TransportationType SET Name= :Name, Description= :Description,
+        var_dump($bindParams);
+        $p->query("UPDATE TransportationTypes SET Name= :Name, Description= :Description,
             Wheels= :Wheels, FuelType= :FuelType WHERE TransID = :TransID", $bindParams);
-        echo $p->rowcount."Rows Affected<BR>";
+        echo $p->rowcount." Rows Affected<BR>";
 
         $p->disconnect();
-        return $transportationType['id'];
+        return $tansType['id'];
     }
 
     function delete($id)   {
@@ -86,7 +86,7 @@ class TransportationTypeMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = ['transId'=>$id];
-        $results = $p->query("DELETE FROM TransportationType WHERE TransID = :transId", $bindParams);
+        $results = $p->query("DELETE FROM TransportationTypes WHERE TransID = :transId", $bindParams);
         echo $p->rowcount."Rows Affected<BR>";
 
         $p->disconnect();
@@ -103,9 +103,10 @@ class TransportationTypeMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = [];
-        $results = $p->query("SELECT *  FROM TransportationType;",$bindParams);
+        $results = $p->query("SELECT *  FROM TransportationTypes;",$bindParams);
 
         $p->disconnect();
+
         return $results;
     }
 

@@ -1,18 +1,17 @@
 <?php
 
-
 class Page {
 
-    private $title = "";
+    private $title = "Emelie";
 
-    function header() {
-      echo
-        '<!DOCTYPE HTML>
+    function header() { ?>
+        <!DOCTYPE HTML>
           <HTML LANG="en">
           <HEAD>
               <TITLE>
               <?php echo $this->title; ?>
               </TITLE>
+              <link href="style.css" rel="stylesheet">
           </HEAD>
         <body style="background-color: black;" id="particles-js">
         <script src="js/particles.js"></script>
@@ -21,8 +20,8 @@ class Page {
           particlesJS.load("particles-js", "assets/particles.json", function() {
           console.log("callback - particles.js config loaded");
           });
-        </script>';
-      }
+        </script>
+      <?php }
 
     function footer() {?>
     </BODY>
@@ -38,6 +37,10 @@ class Page {
 
     <?php }
 
+    function returnForm(){
+        echo '<a href="finalproject.php">Click here to go back</a>';
+    }
+
     function addOwnerForm(){
        ?>
        <FORM METHOD="POST" ACTION="">
@@ -50,14 +53,14 @@ class Page {
             <INPUT TYPE="text" NAME="city" ID="city">
 
             <LABEL FOR="gender">Gender</LABEL>
-            <SELECT ID="gender">
+            <SELECT NAME="gender" ID="gender">
                 <OPTION VALUE="Female" SELECTED>Female</OPTION>
                 <OPTION VALUE="Male">Male</OPTION>
                 <OPTION VALUE="Other">Other</OPTION>
             </SELECT>
 
-        <LABEL FOR="famSize">Family Size</LABEL>
-            <INPUT TYPE="text" NAME="famSize" ID="famSize" ARIA-DESCTIBEDBY="sizeHelp">
+        <LABEL FOR="familySize">Family Size</LABEL>
+            <INPUT TYPE="text" NAME="familySize" ID="familySize" ARIA-DESCTIBEDBY="sizeHelp">
             <small id="sizeHelp">The number of people in your immediate family.</small>
 
         <INPUT TYPE="SUBMIT" VALUE="Add Owner">
@@ -75,12 +78,18 @@ class Page {
         <LABEL FOR="color">Color</LABEL>
         <INPUT TYPE="text" NAME="color" ID="color">
 
+        <LABEL FOR="ownerId">OwnerID</LABEL>
+        <INPUT TYPE="text" NAME="ownerId" ID="ownerId">
+
+        <LABEL FOR="typeId">TypeID</LABEL>
+        <INPUT TYPE="text" NAME="typeId" ID="typeId">
+
         <INPUT TYPE="SUBMIT" VALUE="Add Vehicle">
 
     </FORM>
     <?php }
 
-    function addTransportationTypeForm(){ ?>
+    function addTransTypeForm(){ ?>
 
        <FORM METHOD="POST" ACTION="">
 
@@ -107,24 +116,24 @@ class Page {
 
         <FORM METHOD="POST" ACTION="">
 
-        <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $ownerData->id; ?>">
+        <INPUT TYPE="hidden" NAME="ownerId" VALUE="<?php echo $ownerData->OwnerID; ?>">
 
             <LABEL FOR="name">Name</LABEL>
-            <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $ownerData->name; ?> ">
+            <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $ownerData->Name; ?> ">
             <small id="nameHelp" >Customer first and last name.</small>
 
             <LABEL FOR="city">City</LABEL>
-            <INPUT TYPE="text" NAME="city" ID="city" VALUE="<?php echo $ownerData->city; ?>">
+            <INPUT TYPE="text" NAME="city" ID="city" VALUE="<?php echo $ownerData->City; ?>">
 
             <LABEL FOR="gender">Gender</LABEL>
-            <SELECT>
+            <SELECT NAME="gender" ID="gender">
 
             <?php
-            if($ownerData->gender == "female") {
+            if(strcmp($ownerData->Gender,"female")) {
                 echo '<OPTION ID="gender" VALUE="Female" SELECTED>Female</OPTION>
                 <OPTION ID="gender" VALUE="Male">Male</OPTION>
                 <OPTION ID="gender" VALUE="Other">Other</OPTION>';
-            } elseif($ownerData->gender == "male") {
+            } elseif(strcmp($ownerData->Gender,"male")) {
                 echo '<OPTION ID="gender" VALUE="Female">Female</OPTION>
                 <OPTION ID="gender" VALUE="Male" SELECTED>Male</OPTION>
                 <OPTION ID="gender" VALUE="Other">Other</OPTION>';
@@ -136,10 +145,10 @@ class Page {
             ?>
             </SELECT>
 
-            <LABEL FOR="famSize">Family Size</LABEL>
-            <INPUT TYPE="text" NAME="famSize" ID="famSize" VALUE="<?php echo $ownerData->famSize; ?>">
+            <LABEL FOR="familySize">Family Size</LABEL>
+            <INPUT TYPE="text" NAME="familySize" ID="familySize" VALUE="<?php echo $ownerData->FamilySize; ?>">
 
-            <INPUT TYPE="SUBMIT" VALUE="Edit Customer">
+            <INPUT TYPE="SUBMIT" VALUE="Edit Owner">
         </FORM>
         <?php }
 
@@ -147,36 +156,42 @@ class Page {
 
     <FORM METHOD="POST" ACTION="">
 
-    <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $vehicleData->id; ?>">
+    <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $vehicleData->VehicleID; ?>">
 
         <LABEL FOR="makeModel">Make & Model</LABEL>
-        <INPUT TYPE="text" NAME="makeModel" ID="makeModel" VALUE="<?php echo $vehicleData->makeModel; ?> ">
+        <INPUT TYPE="text" NAME="makeModel" ID="makeModel" VALUE="<?php echo $vehicleData->MakeModel; ?> ">
 
         <LABEL FOR="color">Color</LABEL>
-        <INPUT TYPE="text" NAME="color" ID="color" VALUE="<?php echo $vehicleData->color; ?>">
+        <INPUT TYPE="text" NAME="color" ID="color" VALUE="<?php echo $vehicleData->Color; ?>">
+
+        <LABEL FOR="ownerId">OwnerID</LABEL>
+        <INPUT TYPE="text" NAME="ownerId" ID="ownerId" VALUE="<?php echo $vehicleData->OwnerID ?>">
+
+        <LABEL FOR="typeId">TypeID</LABEL>
+        <INPUT TYPE="text" NAME="typeId" ID="typeId" VALUE="<?php echo $vehicleData->TypeID ; ?>">
 
         <INPUT TYPE="SUBMIT" VALUE="Edit Vehicle">
     </FORM>
     <?php }
 
-    function editTransportationTypeForm($transData){ ?>
+    function editTransTypeForm($transData){ ?>
 
         <FORM METHOD="POST" ACTION="">
 
-        <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $transData->id; ?>">
+        <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $transData->TransID; ?>">
 
             <LABEL FOR="name">Name</LABEL>
-            <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $transData->name; ?> ">
+            <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $transData->Name; ?> ">
             <small id="nameHelp">Bus, Plane, etc.</small>
 
             <LABEL FOR="description">Description</LABEL>
-            <INPUT TYPE="text" NAME="description" ID="description" VALUE="<?php echo $transData->description; ?>">
+            <INPUT TYPE="text" NAME="description" ID="description" VALUE="<?php echo $transData->Description; ?>">
 
             <LABEL FOR="wheels">Wheels</LABEL>
-            <INPUT TYPE="text" NAME="wheels" ID="wheels" VALUE="<?php echo $transData->wheels; ?>">
+            <INPUT TYPE="text" NAME="wheels" ID="wheels" VALUE="<?php echo $transData->Wheels; ?>">
 
             <LABEL FOR="fuel">Fuel Type</LABEL>
-            <INPUT TYPE="text" NAME="fuel" ID="fuel" VALUE="<?php echo $transData->fuel; ?>">
+            <INPUT TYPE="text" NAME="fuel" ID="fuel" VALUE="<?php echo $transData->FuelType; ?>">
 
             <INPUT TYPE="SUBMIT" VALUE="Edit Transportation Type">
         </FORM>
@@ -200,21 +215,35 @@ class Page {
         if(!empty($owners)){
         foreach($owners as $owner)    {
             echo '<TR>
-            <TD>'.$owner->id.'</TD>
-            <TD>'.$owner->name.'</TD>
-            <TD>'.$owner->city.'</TD>
-            <TD>'.$owner->gender.'</TD>
-            <TD>'.$owner->famSize.'</TD>
-            <TD>Update</TD>
-            <TD><A HREF="?action=delete&id='.$owner->id.'">Delete</A></TD>
+            <TD>'.$owner->OwnerID.'</TD>
+            <TD>'.$owner->Name.'</TD>
+            <TD>'.$owner->City.'</TD>
+            <TD>'.$owner->Gender.'</TD>
+            <TD>'.$owner->FamilySize.'</TD>
+            <TD><A HREF="finalproject-edit.php?tables=Owner&id='.$owner->OwnerID.'">Update</A></TD>
+            <TD><A HREF="?tables=Owner&action=delete&id='.$owner->OwnerID.'">Delete</A></TD>
             </TR>';
          }
        }?>
 
         </tbody>
         </table>
+        <div>
+        <h1>Stats for</h1>
     <?php
+        $genderArray = [];
+        foreach($owners as $owner) {
+            if(key_exists($owner->Gender,$genderArray)){
+                $genderArray[$owner->Gender] += 1;
+            } else {
+                $genderArray[$owner->Gender] = 1;
+            }
+        }
 
+        foreach($genderArray as $item=>$count) {
+            echo $item.': '.$count.'<BR>';
+        }
+        echo '<div>';
     }
     function displayVehicleData($vehicles) { ?>
         <table>
@@ -231,34 +260,49 @@ class Page {
             </thead>
             <tbody>
             <?php
-            if(!empty($owners)){
+            if(!empty($vehicles)){
             foreach($vehicles as $vehicle)    {
                 echo '<TR>
-                <TD>'.$vehicle->id.'</TD>
-                <TD>'.$vehicle->makeModel.'</TD>
-                <TD>'.$vehicle->color.'</TD>
-                <TD>'.$vehicle->ownerId.'</TD>
-                <TD>'.$vehicle->typeId.'</TD>
-                <TD>Update</TD>
-                <TD><A HREF="?action=delete&id='.$vehicle->id.'">Delete</A></TD>
+                <TD>'.$vehicle->VehicleID.'</TD>
+                <TD>'.$vehicle->MakeModel.'</TD>
+                <TD>'.$vehicle->Color.'</TD>
+                <TD>'.$vehicle->OwnerID.'</TD>
+                <TD>'.$vehicle->TypeID.'</TD>
+                <TD><A HREF="finalproject-edit.php?tables=Vehicle&id='.$vehicle->VehicleID.'">Update</A></TD>
+                <TD><A HREF="?tables=Vehicle&action=delete&id='.$vehicle->VehicleID.'">Delete</A></TD>
                 </TR>';
              }
            }?>
 
             </tbody>
             </table>
-        <?php
+            <div>
 
+            <h1>Stats for</h1>
+        <?php
+            $colorArray = [];
+            foreach($vehicles as $vehicle){
+                if(key_exists($vehicle->Color,$colorArray)){
+                    $colorArray[$vehicle->Color] += 1;
+                } else {
+                    $colorArray[$vehicle->Color] = 1;
+                }
+            }
+
+            foreach($colorArray as $item=>$count) {
+                echo $item.': '.$count.'<BR>'; 
+            }
+            echo '</div>';
         }
 
-        function displaytransTypeData($type) { ?>
+        function displayTransTypeData($type) { ?>
             <table>
                 <thead>
                     <tr>
                     <th>Owner ID</th>
-                    <th>Type ID</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Wheels</th>
                     <th>Fuel</th>
                     <th>Update</th>
                     <th>Delete</th>
@@ -266,23 +310,94 @@ class Page {
                 </thead>
                 <tbody>
                 <?php
-                if(!empty($owners)){
+                if(!empty($type)){
                 foreach($type as $col)    {
                     echo '<TR>
-                    <TD>'.$col->typeId.'</TD>
-                    <TD>'.$col->name.'</TD>
-                    <TD>'.$col->description.'</TD>
-                    <TD>'.$col->wheels.'</TD>
-                    <TD>'.$col->fuel.'</TD>
-                    <TD>Update</TD>
-                    <TD><A HREF="?action=delete&id='.$col->id.'">Delete</A></TD>
+                    <TD>'.$col->TransID.'</TD>
+                    <TD>'.$col->Name.'</TD>
+                    <TD>'.$col->Description.'</TD>
+                    <TD>'.$col->Wheels.'</TD>
+                    <TD>'.$col->FuelType.'</TD>
+                    <TD><A HREF="finalproject-edit.php?tables=Transportation Type&id='.$col->TransID.'">Update</A></TD>
+                    <TD><A HREF="?tables=Transportation Type&action=delete&id='.$col->TransID.'">Delete</A></TD>
                     </TR>';
                  }
-               }?>
+               } ?>
                 </tbody>
                 </table>
-            <?php
-
+                <div>
+                <h1>Stats for</h1>
+                <?php
+                $fuelArray = [];
+                foreach($type as $col){
+                    if(key_exists($col->FuelType, $fuelArray)) {
+                        $fuelArray[$col->FuelType] += 1;
+                    } else {
+                        $fuelArray[$col->FuelType] = 1;
+                    }
+                }
+                foreach($fuelArray as $item=>$count) {
+                    echo $item.': '.$count.'<BR>';
+                }
+                echo '</div>';
+                
             }
+
+        function searchForm() { ?>
+            <FORM METHOD="POST" ACTION="">
+            <INPUT TYPE = "TEXT" NAME="searchTerm"> 
+            <INPUT TYPE = "SUBMIT" VALUE="Search"> 
+            </FORM>
+        <?php }
+
+        function searchOwner($term, $owners) { 
+            $term = strtolower($term);
+            $searchList = [];
+
+            foreach ($owners as $owner) {
+                if(strpos(strtolower($owner->Name), $term) !== false){
+                    $searchList[] = $owner;
+                }elseif(strpos(strtolower($owner->City), $term) !== false){
+                    $searchList[] = $owner;
+                }elseif(strpos(strtolower($owner->Gender), $term) !== false){
+                    $searchList[] = $owner;
+                }elseif(strpos(strtolower($owner->FamilySize), $term) !== false){
+                    $searchList[] = $owner;
+                }   
+            }
+            return $searchList;
+        }
+
+        function searchVehicle($term, $vehicles) {
+            $term = strtolower($term);
+            $searchList = [];
+
+            foreach($vehicles as $vehicle) {
+                if(strpos(strtolower($vehicle->MakeModel), $term) !== false){
+                    $filteredSearchList[] = $trans;
+                }elseif(strpos(strtolower($trans->Color), $term) !== false){
+                    $filteredSearchList[] = $trans;
+                }
+            }
+            return $searchList;
+        }
+
+        function searchTransType($term, $transData){
+            $term = strtolower($term);
+            $searchList = [];
+
+            foreach($transData as $trans) {
+                if(strpos(strtolower($trans->Name), $term) !== false){
+                    $filteredSearchList[] = $trans;
+                }   elseif(strpos(strtolower($trans->Description), $term) !== false){
+                    $filteredSearchList[] = $trans;
+                }   elseif(strpos(strtolower($trans->Wheels),     $term) !== false){
+                    $filteredSearchList[] = $trans;
+                }   elseif(strpos(strtolower($trans->FuelType), $term) !== false){
+                    $filteredSearchList[] = $trans;
+                }
+            }
+            return $searchList;
+        }
 }
 ?>

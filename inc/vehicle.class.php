@@ -10,7 +10,7 @@ class Vehicle {
 
     //Default constructor method
     function __construct($newMakeModel, $newColor, $newOwnerId, $newTypeId)   {
-        $this->$makeModel = $newMakeModel;
+        $this->makeModel = $newMakeModel;
         $this->color = $newColor;
         $this->ownerId = $newOwnerId;
         $this->typeId = $newTypeId;
