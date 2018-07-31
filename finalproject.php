@@ -119,7 +119,7 @@ if($tableName === "Transportation Type"){
 }
 
 //Check GET data to see if we should delete a an object
-if (isset($_GET['action']) && $_GET['action'] == "delete" && isset($_GET['id']))   {
+if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['id']))   {
     //Delete the object
     $results = $objMapper->delete($_GET['id']);
     echo '<DIV CLASS="alert alert-success">Customer '.$results.' has been deleted.</DIV>';

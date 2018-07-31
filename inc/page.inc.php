@@ -16,7 +16,7 @@ class Page {
           </HEAD>
         <body style="background-color: black;" id="particles-js">
         <script src="js/particles.js"></script>
-
+        <link rel="stylesheet" type="text/css" href="css/php_final.css">
         <script>
           particlesJS.load("particles-js", "assets/particles.json", function() {
           console.log("callback - particles.js config loaded");
