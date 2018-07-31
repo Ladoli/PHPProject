@@ -17,6 +17,7 @@ class Page {
         <script src="js/particles.js"></script>
         <link rel="stylesheet" type="text/css" href="css/php_final.css">
         <link rel="stylesheet" href="sass/final_sass.scss">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script>
           particlesJS.load("particles-js", "assets/particles.json", function() {
