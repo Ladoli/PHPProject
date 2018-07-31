@@ -16,7 +16,7 @@ class Page {
         <div id="particles-js"></div>
         <script src="js/particles.js"></script>
         <link rel="stylesheet" type="text/css" href="css/php_final.css">
-        <link rel="stylesheet" href="sass/final_sass.scss">
+        <link rel="stylesheet" type="text/css" href="sass/final_style.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script>
@@ -240,7 +240,7 @@ class Page {
         if(!empty($owners)){
           $odd = true;
         foreach($owners as $owner)    {
-            if(odd){
+            if($odd){
               echo '<TR class="rowColor1">';
               $odd = false;
             }else{
@@ -295,7 +295,7 @@ class Page {
             if(!empty($vehicles)){
             $odd = true;
             foreach($vehicles as $vehicle)    {
-              if(odd){
+              if($odd){
                 echo '<TR class="rowColor1">';
                 $odd = false;
               }else{
@@ -352,7 +352,7 @@ class Page {
                 if(!empty($type)){
                 $odd = true;
                 foreach($type as $col)    {
-                  if(odd){
+                  if($odd){
                     echo '<TR class="rowColor1">';
                     $odd = false;
                   }else{

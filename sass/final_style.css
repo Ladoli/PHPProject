@@ -1,0 +1,15 @@
+body {
+    font-family: 'IBM Plex Sans', sans-serif; }
+  
+  input {
+    display: inline-block; }
+  
+  table {
+    border-collapse: collapse; }
+    table .rowColor1 td {
+      border: 1px solid #AA6373; }
+    table .rowColor2 td {
+      border: 1px solid #C4C689; }
+  
+  /*# sourceMappingURL=final_style.css.map */
+  
