@@ -12,7 +12,9 @@ class OwnerMapper    {
     function create($postdata)  {
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
-        $owner = new Owner($postdata['name'], $postdata['city'], $postdata['gender'], $postdata['familySize']);
+
+        validateNumber($postdata['familySize'],1,"Family Size input is invalid. Must a number greater than 1.");
+        $owner = new Owner(cleanString($postdata['name']), cleanString($postdata['city']), cleanString($postdata['gender']), $postdata['familySize']);
 
         //new PDOAgent
         $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost", DBNAME);
@@ -49,6 +51,7 @@ class OwnerMapper    {
 
     function read($id) {
         //Get the data of Object with passed ID. Return object Object1 constructed with the data
+        validateNumber($id,1,"Tried to read data of invalid entry");
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
         $bindParams = ['id'=>$id];
@@ -62,19 +65,26 @@ class OwnerMapper    {
 
     function update($owner)   {
         //Update the data of Object with passed ID
+        validateNumber($owner['ownerId'],1,"Owner ID is invalid or is below 1.");
+        validateNumber($owner['ownerId'],1,"FamilySize input is invalid or is below 1.");
+
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
-
         $bindParams = ['OwnerID' =>$owner['ownerId'],
-            'Name' =>$owner['name'],
-            'City' =>$owner['city'],
-            'Gender' =>$owner['gender'],
+            'Name' =>cleanString($owner['name']),
+            'City' =>cleanString($owner['city']),
+            'Gender' =>cleanString($owner['gender']),
             'FamilySize' =>$owner['familySize']
         ];
 
         $p->query("UPDATE Owners SET Name= :Name, City= :City, Gender= :Gender,
            FamilySize= :FamilySize WHERE OwnerID = :OwnerID", $bindParams);
         echo $p->rowcount." Rows Affected<BR>";
+        if($p->rowcount === 0){
+          echo '<DIV CLASS="alert alert-success">Owner '.$owner['ownerId'].' was not updated.<br>';
+        }else{
+          echo '<DIV CLASS="alert alert-success">Owner '.$owner['ownerId'].' has been updated.<br>';
+        }
 
         $p->disconnect();
         return $owner['ownerId'];
@@ -82,11 +92,13 @@ class OwnerMapper    {
 
     function delete($id)   {
         //Delete the data of the object with the passed ID
+        validateNumber($id,1,"Owner ID is invalid or is below 1.");
+
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
         $bindParams = ['ownerId'=>$id];
         $results = $p->query("DELETE FROM Owners WHERE OwnerID = :ownerId", $bindParams);
-        echo $p->rowcount."Rows Affected<BR>";
+        echo $p->rowcount." Rows Affected<BR>";
 
         $p->disconnect();
         if ($p->rowcount != 1){

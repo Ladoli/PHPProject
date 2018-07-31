@@ -12,8 +12,10 @@ class TransportationTypeMapper    {
     function create($postdata)  {
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
+        validateNumber($postdata['wheels'],0,"Wheels must be a valid number");
+
         $transportationType = new TransportationType(
-            $postdata['name'], $postdata['description'], $postdata['wheels'], $postdata['fuel']
+            cleanString($postdata['name']), cleanString($postdata['description']), $postdata['wheels'], cleanString($postdata['fuel'])
           );
 
         //new PDOAgent
@@ -51,6 +53,7 @@ class TransportationTypeMapper    {
 
     function read($id) {
         //Get the data of Object with passed ID. Return object Object1 constructed with the data
+        validateNumber($id,1,"Tried to read data of invalid entry");
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = ['id'=>$id];
@@ -63,31 +66,40 @@ class TransportationTypeMapper    {
 
     function update($tansType)   {
         //Update the data of Object with passed ID
+        validateNumber($tansType['wheels'],0,"Wheels must be a valid number");
+        validateNumber($tansType['id'],1,"TransID is invalid or is below 1.");
+
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
 
         $bindParams = ['TransID'=>$tansType['id'],
-            'Name'=>$tansType['name'],
-            'Description'=>$tansType['description'],
+            'Name'=>cleanString($tansType['name']),
+            'Description'=>cleanString($tansType['description']),
             'Wheels'=>$tansType['wheels'],
-            'FuelType'=>$tansType['fuel']
+            'FuelType'=>cleanString($tansType['fuel'])
         ];
         // var_dump($bindParams);
         $p->query("UPDATE TransportationTypes SET Name= :Name, Description= :Description,
             Wheels= :Wheels, FuelType= :FuelType WHERE TransID = :TransID", $bindParams);
-        echo $p->rowcount." Rows Affected<BR>";
-
+        echo $p->rowcount.' Rows Affected<BR>';
+        if($p->rowcount === 0){
+          echo '<DIV CLASS="alert alert-success">Transportation Type '.$tansType['id'].' was not updated.<br>';
+        }else{
+          echo '<DIV CLASS="alert alert-success">Transportation Type '.$tansType['id'].' has been updated.<br>';
+        }
         $p->disconnect();
         return $tansType['id'];
     }
 
     function delete($id)   {
         //Delete the data of the object with the passed ID
+        validateNumber($id,1,"Trans ID is invalid or is below 1.");
+
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = ['transId'=>$id];
         $results = $p->query("DELETE FROM TransportationTypes WHERE TransID = :transId", $bindParams);
-        echo $p->rowcount."Rows Affected<BR>";
+        echo $p->rowcount." Rows Affected<BR>";
 
         $p->disconnect();
         if ($p->rowcount != 1){

@@ -13,7 +13,8 @@ class Page {
               </TITLE>
               <link href="style.css" rel="stylesheet">
           </HEAD>
-        <body style="background-color: black;" id="particles-js">
+        <body style="background-color: black;">
+        <div id="particles-js"></div>
         <script src="js/particles.js"></script>
         <link rel="stylesheet" type="text/css" href="css/php_final.css">
         <script>
@@ -31,19 +32,17 @@ class Page {
     function tableChooser() {
         //Provide users ability to choose which table to access, probably using GET variables
         ?>
+        <div id="tablePicker">
         <A HREF="?tables=Owner">Owner</A>
         <A HREF="?tables=Transportation Type">Transportation Type</A>
         <A HREF="?tables=Vehicle">Vehicle</A>
+        </div>
 
     <?php }
 
-    function returnForm(){
-        echo '<a href="finalproject.php">Click here to go back</a>';
-    }
-
     function addOwnerForm(){
        ?>
-       <FORM METHOD="POST" ACTION="">
+       <FORM class="addForm" METHOD="POST" ACTION="">
 
         <LABEL FOR="name">Name</LABEL>
         <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" PLACEHOLDER="Full Name">
@@ -70,7 +69,7 @@ class Page {
 
     function addVehicleForm(){
        ?>
-       <FORM METHOD="POST" ACTION="">
+       <FORM class="addForm" METHOD="POST" ACTION="">
 
         <LABEL FOR="makeModel">Make & Model</LABEL>
         <INPUT TYPE="text" NAME="makeModel" ID="makeModel">
@@ -91,7 +90,7 @@ class Page {
 
     function addTransTypeForm(){ ?>
 
-       <FORM METHOD="POST" ACTION="">
+       <FORM class="addForm" METHOD="POST" ACTION="">
 
         <LABEL FOR="name">Name</LABEL>
         <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp">

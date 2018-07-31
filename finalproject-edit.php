@@ -1,5 +1,6 @@
 <?php
 require_once('inc/config.inc.php');
+require_once('inc/functionHelperList.php');
 require_once('inc/pdo.inc.php');
 require_once('inc/page.inc.php');
 require_once('inc/owner.class.php');
@@ -33,22 +34,22 @@ if($tableName === "Transportation Type"){
         || empty($_POST['description'])
         || empty($_POST['wheels'])
         || empty($_POST['fuel']) ){
-        
+
             //Display an alert
-            echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate customer details.<br/>
+            echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
 
             exit;
         } else {
             $results = $objMapper->update($_POST);
-            echo '<DIV CLASS="alert alert-success">Customer '.$results.' has been updated.<br>
+            echo '
             <a href="finalproject.php?tables=Transportation Type">Click here to go back</a></DIV>';
         }
     }
         if (isset($_GET['id']))   {
-            $page->editTransTypeForm($objMapper->read($_GET['id']));   
+            $page->editTransTypeForm($objMapper->read($_GET['id']));
         }else {
-            echo '<DIV CLASS="alert alert-success">No customer ID to edit. Please go update a customer from <a href="Lab08AVi_68076.php">this</a> page.</DIV>';
+            echo '<DIV CLASS="alert alert-success">No ID to edit. Please go update from <a href="Lab08AVi_68076.php">this</a> page.</DIV>';
         }
 
 } elseif($tableName === "Owner") {
@@ -60,47 +61,47 @@ if($tableName === "Transportation Type"){
             || empty($_POST['city'])
             || empty($_POST['gender'])
             || empty($_POST['familySize']) )  {
-                var_dump($_POST);
+                // var_dump($_POST);
             //Display an alert
-            echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate customer details.<br/>
+            echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
 
             exit;
             } else {
                 $results = $objMapper->update($_POST);
-                echo '<DIV CLASS="alert alert-success">Customer '.$results.' has been updated.<br>
-                <a href="finalproject.php?tables=Owner">Click here to go back</a></DIV>';
+                echo '<a href="finalproject.php?tables=Owner">Click here to go back</a></DIV>';
             }
         }
             if (isset($_GET['id']))   {
-                $page->editOwnerForm($objMapper->read($_GET['id']));   
+                $page->editOwnerForm($objMapper->read($_GET['id']));
             }else {
-                echo '<DIV CLASS="alert alert-success">No customer ID to edit. Please go update a customer from <a href="Lab08AVi_68076.php">this</a> page.</DIV>';
+                echo '<DIV CLASS="alert alert-success">No owner ID to edit. Please go update a customer from <a href="Lab08AVi_68076.php">this</a> page.</DIV>';
             }
 } else {
     $objMapper = new VehicleMapper();
-    if(empty($_POST)) {
-
-    } else {
+    if(!empty($_POST)) {
         if (empty($_POST['makeModel'])
             || empty($_POST['color'])
             || empty($_POST['typeId'])
             || empty($_POST['ownerId']))  {
                 //Display an alert
-                echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate customer details.<br/>
+                echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
                 Please go back and try again.</DIV> ';
-            
+
                 exit;
             } else {
                 $results = $objMapper->update($_POST);
-                echo '<DIV CLASS="alert alert-success">Customer '.$results.' has been updated.<br>
+                echo '
                 <a href="finalproject.php?tables=Vehicles">Click here to go back</a></DIV>';
             }
         }
             if (isset($_GET['id']))   {
-                $page->editVehicleForm($objMapper->read($_GET['id']));   
+                $page->editVehicleForm($objMapper->read($_GET['id']));
+
+                returnForm();
+
             }else {
-                echo '<DIV CLASS="alert alert-success">No customer ID to edit. Please go update a customer from <a href="Lab08AVi_68076.php">this</a> page.</DIV>';
+                echo '<DIV CLASS="alert alert-success">No vehicle ID to edit. Please go update a customer from <a href="Lab08AVi_68076.php">this</a> page.</DIV>';
             }
 }
 

@@ -1,8 +1,12 @@
 <?php
 
+
+//http://php.net/manual/en/function.trim.php <--- Trimming data to remove unneeded white spaces.
+//http://php.net/manual/en/function.preg-replace.php <--- Replacing extra white spaces with a single white space
 //Required files
 
 require_once('inc/config.inc.php');
+require_once('inc/functionHelperList.php');
 require_once('inc/owner.class.php');
 require_once('inc/transportationType.class.php');
 require_once('inc/vehicle.class.php');
@@ -139,7 +143,7 @@ $page->tableChooser();
 
 //Display the data
 if($tableName === "Transportation Type"){
-  $page->addTransportationTypeForm();
+  $page->addTransTypeForm();
   $page->displaytransTypeData($objMapper->listAll());
 }elseif($tableName === "Owner"){
   $page->addOwnerForm();
