@@ -27,6 +27,30 @@ class Page {
       <?php }
 
     function footer() {?>
+      <script>
+      // WmGwHfgi8DtKcLUFjLnucKSnOYTzhDstd8XQiwYV
+
+      fetch('https://api.nasa.gov/planetary/apod?api_key=WmGwHfgi8DtKcLUFjLnucKSnOYTzhDstd8XQiwYV',{
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          }}).then(function(response) {
+        return response.json();
+      }).then(function(res){
+        console.log(res)
+        console.log(res.url)
+        let imgFooter = document.getElementById("footerImage");
+        imgFooter.src = res.url;
+        imgFooter.alt = res.explaination;
+
+        let imgText = document.getElementById("footerText");
+        imgText.innerHTML = res.title;
+
+      });
+      </script>
+      <div id=footerText></div>
+      <img id="footerImage">
     </BODY>
     </HTML>
     <?php }

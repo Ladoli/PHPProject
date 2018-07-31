@@ -70,7 +70,7 @@ if($tableName === "Transportation Type"){
         if (!isset($_POST['name'])
             || !isset($_POST['city'])
             || !isset($_POST['gender'])
-            || !isset($_POST['familySize']) )  {
+            || !isset($_POST['familySize'])){
 
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
