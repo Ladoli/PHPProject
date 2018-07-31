@@ -254,7 +254,7 @@ class Page {
         </tbody>
         </table>
         <div>
-        <h1>Stats for</h1>
+        <h1>Stats for Gender</h1>
     <?php
         $genderArray = [];
         foreach($owners as $owner) {
@@ -303,7 +303,7 @@ class Page {
             </table>
             <div>
 
-            <h1>Stats for</h1>
+            <h1>Stats for Color</h1>
         <?php
             $colorArray = [];
             foreach($vehicles as $vehicle){
@@ -351,7 +351,7 @@ class Page {
                 </tbody>
                 </table>
                 <div>
-                <h1>Stats for</h1>
+                <h1>Stats for Fuel Type</h1>
                 <?php
                 $fuelArray = [];
                 foreach($type as $col){
