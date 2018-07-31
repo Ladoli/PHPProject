@@ -15,14 +15,39 @@ class Page {
         <body style="background-color: black;">
         <div id="particles-js"></div>
         <script src="js/particles.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+        <script src="js/scriptsass.js"></script>
         <link rel="stylesheet" type="text/css" href="css/php_final.css">
-        <link rel="stylesheet" href="sass/final_sass.scss">
+        <!-- <link rel="stylesheet" href="sass/final_sass.scss"> -->
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <code type="sass">
+          td {
+              @error "yssfdds";
+              border: 1px solid;
+
+              $color:red;
+              border-color:$color;
+
+              @if(true){
+                border-color:red;
+              }@else{
+                border-color:blue;
+              }
+          }
+
+        </code>
         <script>
           particlesJS.load("particles-js", "assets/particles.json", function() {
           console.log("callback - particles.js config loaded");
           });
+          $(document).ready(function (){
+          	ScriptSass.compileInline().done(function (){
+          	});
+          });
+          // ScriptSass.compileInline();
+
+          // ScriptSass.load("sass/final_sass.scss");
         </script>
       <?php }
 

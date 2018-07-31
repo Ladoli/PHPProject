@@ -1,4 +1,4 @@
-$color: ('#AA6373', '#C4C689', '#392061');
+$color: (#AA6373, #C4C689, #392061);
 
 body {
     font-family: 'IBM Plex Sans', sans-serif;
@@ -8,13 +8,14 @@ input {
     display: inline-block;
 }
 
-table {
 
-tr {
-    border: 1px solid nth($color, 1);
+td {
+    @error "yssfdds";
+    border: 1px solid;
 
-    @for $i from 0 through length($color) {
-        border: 1px solid nth($color, 1);
+    @if (true){
+      border-color:red;
+    }@else{
+      border-color:blue;
     }
-}
 }
