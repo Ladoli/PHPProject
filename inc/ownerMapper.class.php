@@ -65,7 +65,7 @@ class OwnerMapper    {
 
     function update($owner)   {
         //Update the data of Object with passed ID
-        validateNumber($owner['ownerId'],1,"Owner ID is invalid or is below 1.");
+        validateNumber($owner['ownerId'],1,"Owner ID is invalid or is below 1.<br>");
         validateNumber($owner['ownerId'],1,"FamilySize input is invalid or is below 1.");
 
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);

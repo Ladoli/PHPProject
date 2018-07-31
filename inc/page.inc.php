@@ -17,6 +17,7 @@ class Page {
         <div id="particles-js"></div>
         <script src="js/particles.js"></script>
         <link rel="stylesheet" type="text/css" href="css/php_final.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script>
           particlesJS.load("particles-js", "assets/particles.json", function() {
           console.log("callback - particles.js config loaded");

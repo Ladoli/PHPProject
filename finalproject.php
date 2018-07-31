@@ -34,15 +34,12 @@ if(isset($_GET['tables'])){
 //Check GET data to understand what Table we are dealing with and create an ObjectMapper based on that
 if($tableName === "Transportation Type"){
     $objMapper = new TransportationTypeMapper();
-    if (empty($_POST))  {
+    if (empty($_POST) || isset($_POST['searchTerm']))  {
 
     } else {
-        if(isset($_POST['searchTerm'])){
-            $page->displayTransTypeData($objMapper->searchDisplay($_POST['searchTerm']));
-            exit;
-        }
+
         //Verify the post data
-        elseif (!isset($_POST['name'])
+    if (!isset($_POST['name'])
             || !isset($_POST['description'])
             || !isset($_POST['wheels'])
             || !isset($_POST['fuel'])){
@@ -66,15 +63,11 @@ if($tableName === "Transportation Type"){
     }
 }elseif($tableName === "Owner"){
     $objMapper = new OwnerMapper();
-    if (empty($_POST))  {
+    if (empty($_POST) || isset($_POST['searchTerm']))  {
 
     } else {
-        if(isset($_POST['searchTerm'])){
-            $page->displayOwnerData($objMapper->searchDisplay($_POST['searchTerm']));
-            exit;
-        }
         //Verify the post data
-        elseif (!isset($_POST['name'])
+        if (!isset($_POST['name'])
             || !isset($_POST['city'])
             || !isset($_POST['gender'])
             || !isset($_POST['familySize']) )  {
@@ -99,15 +92,11 @@ if($tableName === "Transportation Type"){
 }else{
     //Create a default table
     $objMapper = new VehicleMapper();
-    if (empty($_POST))  {
+    if (empty($_POST) || isset($_POST['searchTerm']))  {
 
     } else {
-        if(isset($_POST['searchTerm'])){
-            $page->displayVehicleData($objMapper->searchDisplay($_POST['searchTerm']));
-            exit;
-        }
         //Verify the post data
-        elseif (!isset($_POST['makeModel'])
+        if (!isset($_POST['makeModel'])
             || !isset($_POST['color'])
             || !isset($_POST['typeId'])
             || !isset($_POST['ownerId']))  {
@@ -144,13 +133,38 @@ $page->tableChooser();
 //Display the data
 if($tableName === "Transportation Type"){
   $page->addTransTypeForm();
-  $page->displaytransTypeData($objMapper->listAll());
+
+  if(isset($_POST['searchTerm']) && empty($_POST['searchTerm'])) {
+    echo '<DIV CLASS="alert alert-danger">Please enter a valid search term.<br/><br/>
+    </DIV> ';
+    returnForm();
+  }elseif(isset($_POST['searchTerm'])){
+      $page->displayTransTypeData($objMapper->searchDisplay($_POST['searchTerm']));
+  }else{
+    $page->displayTransTypeData($objMapper->listAll());
+  }
 }elseif($tableName === "Owner"){
   $page->addOwnerForm();
-  $page->displayOwnerData($objMapper->listAll());
+  if(isset($_POST['searchTerm']) && empty($_POST['searchTerm'])) {
+    echo '<DIV CLASS="alert alert-danger">Please enter a valid search term.<br/><br/>
+    </DIV> ';
+    returnForm();
+  }elseif(isset($_POST['searchTerm'])){
+      $page->displayOwnerData($objMapper->searchDisplay($_POST['searchTerm']));
+  }else{
+    $page->displayOwnerData($objMapper->listAll());
+  }
 }else{
   $page->addVehicleForm();
-  $page->displayVehicleData($objMapper->listAll());
+  if(isset($_POST['searchTerm']) && empty($_POST['searchTerm'])) {
+    echo '<DIV CLASS="alert alert-danger">Please enter a valid search term.<br/><br/>
+    </DIV> ';
+    returnForm();
+  }elseif(isset($_POST['searchTerm'])){
+      $page->displayVehicleData($objMapper->searchDisplay($_POST['searchTerm']));
+  }else{
+    $page->displayVehicleData($objMapper->listAll());
+  }
 }
 
 
