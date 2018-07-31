@@ -5,16 +5,16 @@ body {
 }
 
 input {
-    display: inline-block;   
+    display: inline-block;
 }
 
 table {
 
 tr {
-    border: 1px solid nth($color, 1);        
+    border: 1px solid nth($color, 1);
 
     @for $i from 0 through length($color) {
-        border: 1px solid nth($color, 1);        
+        border: 1px solid nth($color, 1);
     }
 }
 }

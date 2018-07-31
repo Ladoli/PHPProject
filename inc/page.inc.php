@@ -59,9 +59,19 @@ class Page {
         //Provide users ability to choose which table to access, probably using GET variables
         ?>
         <div id="tablePicker">
-        <A CLASS="tableLinks" HREF="?tables=Owner">Owner</A>
-        <A CLASS="tableLinks" HREF="?tables=Transportation Type">Transportation Type</A>
-        <A CLASS="tableLinks" HREF="?tables=Vehicle">Vehicle</A>
+          <table>
+            <tr>
+              <td>
+                <A CLASS="tableLinks" HREF="?tables=Owner">Owner</A>
+              </td>
+              <td>
+                <A CLASS="tableLinks" HREF="?tables=Transportation Type">Transportation Type</A>
+              </td>
+              <td>
+                <A CLASS="tableLinks" HREF="?tables=Vehicle">Vehicle</A>
+              </td>
+            </tr>
+          </table>
         </div>
 
     <?php }
@@ -240,7 +250,7 @@ class Page {
         if(!empty($owners)){
           $odd = true;
         foreach($owners as $owner)    {
-            if(odd){
+            if($odd){
               echo '<TR class="rowColor1">';
               $odd = false;
             }else{
@@ -295,7 +305,7 @@ class Page {
             if(!empty($vehicles)){
             $odd = true;
             foreach($vehicles as $vehicle)    {
-              if(odd){
+              if($odd){
                 echo '<TR class="rowColor1">';
                 $odd = false;
               }else{
@@ -352,7 +362,7 @@ class Page {
                 if(!empty($type)){
                 $odd = true;
                 foreach($type as $col)    {
-                  if(odd){
+                  if($odd){
                     echo '<TR class="rowColor1">';
                     $odd = false;
                   }else{
