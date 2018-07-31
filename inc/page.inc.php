@@ -28,8 +28,10 @@ class Page {
 
     function footer() {?>
       <script>
-      // WmGwHfgi8DtKcLUFjLnucKSnOYTzhDstd8XQiwYV
-
+      // WmGwHfgi8DtKcLUFjLnucKSnOYTzhDstd8XQiwYV is my Nasa Developer Key
+      // This technology calls on the apod API to display information about a Nasa Image of the day
+      // This information is then used to display the image as a footer.
+      //The image would change daily.
       fetch('https://api.nasa.gov/planetary/apod?api_key=WmGwHfgi8DtKcLUFjLnucKSnOYTzhDstd8XQiwYV',{
           method: 'GET',
           headers: {
@@ -38,8 +40,6 @@ class Page {
           }}).then(function(response) {
         return response.json();
       }).then(function(res){
-        console.log(res)
-        console.log(res.url)
         let imgFooter = document.getElementById("footerImage");
         imgFooter.src = res.url;
         imgFooter.alt = res.explaination;
@@ -238,9 +238,16 @@ class Page {
         <tbody>
         <?php
         if(!empty($owners)){
+          $odd = true;
         foreach($owners as $owner)    {
-            echo '<TR>
-            <TD>'.$owner->OwnerID.'</TD>
+            if(odd){
+              echo '<TR class="rowColor1">';
+              $odd = false;
+            }else{
+              echo '<TR class="rowColor2">';
+              $odd = true;
+            }
+            echo '<TD>'.$owner->OwnerID.'</TD>
             <TD>'.$owner->Name.'</TD>
             <TD>'.$owner->City.'</TD>
             <TD>'.$owner->Gender.'</TD>
@@ -286,9 +293,16 @@ class Page {
             <tbody>
             <?php
             if(!empty($vehicles)){
+            $odd = true;
             foreach($vehicles as $vehicle)    {
-                echo '<TR>
-                <TD>'.$vehicle->VehicleID.'</TD>
+              if(odd){
+                echo '<TR class="rowColor1">';
+                $odd = false;
+              }else{
+                echo '<TR class="rowColor2">';
+                $odd = true;
+              }
+              echo '<TD>'.$vehicle->VehicleID.'</TD>
                 <TD>'.$vehicle->MakeModel.'</TD>
                 <TD>'.$vehicle->Color.'</TD>
                 <TD>'.$vehicle->OwnerID.'</TD>
@@ -336,8 +350,16 @@ class Page {
                 <tbody>
                 <?php
                 if(!empty($type)){
+                $odd = true;
                 foreach($type as $col)    {
-                    echo '<TR>
+                  if(odd){
+                    echo '<TR class="rowColor1">';
+                    $odd = false;
+                  }else{
+                    echo '<TR class="rowColor2">';
+                    $odd = true;
+                  }
+                    echo '
                     <TD>'.$col->TransID.'</TD>
                     <TD>'.$col->Name.'</TD>
                     <TD>'.$col->Description.'</TD>
