@@ -1,8 +1,12 @@
 <?php
 
+
+//http://php.net/manual/en/function.trim.php <--- Trimming data to remove unneeded white spaces.
+//http://php.net/manual/en/function.preg-replace.php <--- Replacing extra white spaces with a single white space
 //Required files
 
 require_once('inc/config.inc.php');
+require_once('inc/functionHelperList.php');
 require_once('inc/owner.class.php');
 require_once('inc/transportationType.class.php');
 require_once('inc/vehicle.class.php');
@@ -42,7 +46,7 @@ if($tableName === "Transportation Type"){
             || !isset($_POST['description'])
             || !isset($_POST['wheels'])
             || !isset($_POST['fuel'])){
-              
+
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
@@ -74,7 +78,7 @@ if($tableName === "Transportation Type"){
             || !isset($_POST['city'])
             || !isset($_POST['gender'])
             || !isset($_POST['familySize']) )  {
-                
+
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
@@ -107,15 +111,15 @@ if($tableName === "Transportation Type"){
             || !isset($_POST['color'])
             || !isset($_POST['typeId'])
             || !isset($_POST['ownerId']))  {
-                
+
             //Display an alert
-            
+
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
 
             exit;
         } else {
-            
+
                 //We have the right data, lets go ahead and add the customer via the customer mapper
                 unset($_GET['id']);
                 unset($_GET['action']);
@@ -129,7 +133,7 @@ if($tableName === "Transportation Type"){
 }
 
 //Check GET data to see if we should delete a an object
-if (isset($_GET['action']) && $_GET['action'] == "delete" && isset($_GET['id']))   {
+if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['id']))   {
     //Delete the object
     $results = $objMapper->delete($_GET['id']);
     echo '<DIV CLASS="alert alert-success">Customer '.$results.' has been deleted.</DIV>';
@@ -139,8 +143,8 @@ $page->tableChooser();
 
 //Display the data
 if($tableName === "Transportation Type"){
-    $page->addTransTypeForm();
-    $page->displayTransTypeData($objMapper->listAll());
+  $page->addTransTypeForm();
+  $page->displaytransTypeData($objMapper->listAll());
 }elseif($tableName === "Owner"){
   $page->addOwnerForm();
   $page->displayOwnerData($objMapper->listAll());
@@ -148,6 +152,9 @@ if($tableName === "Transportation Type"){
   $page->addVehicleForm();
   $page->displayVehicleData($objMapper->listAll());
 }
+
+
+
 
 //Footer
 $page->footer();

@@ -10,7 +10,8 @@ CREATE TABLE owners(
     City VARCHAR(20) NOT NULL,
     Gender VARCHAR(20) NOT NULL,
     FamilySize INT(2) NOT NULL
-);
+)
+ENGINE=InnoDB;
 
 CREATE TABLE TransportationTypes(
     TransID INT(2) PRIMARY KEY AUTO_INCREMENT,
@@ -18,7 +19,8 @@ CREATE TABLE TransportationTypes(
     Description VARCHAR(100) NOT NULL,
     Wheels INT(2) NOT NULL,
     FuelType VARCHAR(20) NOT NULL
-);
+)
+ENGINE=InnoDB;
 
 CREATE TABLE Vehicles(
     VehicleID INT(2) PRIMARY KEY AUTO_INCREMENT,
@@ -28,7 +30,9 @@ CREATE TABLE Vehicles(
     TypeID INT(2) NOT NULL,
     FOREIGN KEY(OwnerID) REFERENCES owners(OwnerID),
     FOREIGN KEY(TypeID) REFERENCES transportationtypes(TransID)
-);
+)
+
+ENGINE=InnoDB;
 
 INSERT INTO OWNERS(Name, City, Gender, FamilySize)
             VALUES ("Angelo", "Coquitlam", "Male", 6);
