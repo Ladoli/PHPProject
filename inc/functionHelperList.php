@@ -15,7 +15,7 @@ function validateNumber($num, $min, $message){
   if(filter_var($num, FILTER_VALIDATE_INT) === 0 || filter_var($num, FILTER_VALIDATE_INT,array("options" => array("min_range"=>$min)))) {
     return;
   }else{
-    echo $message;
+    echo '<DIV CLASS="alert alert-danger">'. $message.'</DIV>';
     returnForm();
     die;
   }
