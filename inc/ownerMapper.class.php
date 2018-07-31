@@ -6,7 +6,7 @@ class OwnerMapper    {
     private $lastInsertId = null;
     private $attributes = null;
 
-    //We will use this to construct our queries. Particularly the "FROM" part of queries
+    //We will use this to cvar_dump($_POST['Search']);onstruct our queries. Particularly the "FROM" part of queries
 
 
     function create($postdata)  {
@@ -15,7 +15,7 @@ class OwnerMapper    {
         $owner = new Owner($postdata['name'], $postdata['city'], $postdata['gender'], $postdata['familySize']);
 
         //new PDOAgent
-        $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost", "Owner");
+        $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost", DBNAME);
 
         //Connect to the Database
         $p->connect();
@@ -30,7 +30,7 @@ class OwnerMapper    {
 
         //Get the results of the insert query (rows inserted)
         $results = $p->query("INSERT INTO Owners(Name, City, Gender, FamilySize)
-            VALUES ( :name, :city, :Gender, :familySize);", $bindParams);
+            VALUES ( :name, :city, :gender, :familySize);", $bindParams);
         //copy the last inserted id
         $this->lastInsertId = $p->lastInsertId;
 
@@ -55,28 +55,29 @@ class OwnerMapper    {
         $results = $p->query("SELECT * FROM Owners WHERE OwnerID = :id",$bindParams);
 
         $p->disconnect();
+
         return $results[0];
 
     }
 
-    function update($objectToUpdate)   {
+    function update($owner)   {
         //Update the data of Object with passed ID
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
 
-        $bindParams = ['OwnerID' =>$objectToUpdate['ownerId'],
-            'Name' =>$objectToUpdate['name'],
-            'City' =>$objectToUpdate['city'],
-            'Gender' =>$objectToUpdate['gender'],
-            'FamilySize' =>$objectToUpdate['familySize']
+        $bindParams = ['OwnerID' =>$owner['ownerId'],
+            'Name' =>$owner['name'],
+            'City' =>$owner['city'],
+            'Gender' =>$owner['gender'],
+            'FamilySize' =>$owner['familySize']
         ];
 
         $p->query("UPDATE Owners SET Name= :Name, City= :City, Gender= :Gender,
            FamilySize= :FamilySize WHERE OwnerID = :OwnerID", $bindParams);
-        echo $p->rowcount."Rows Affected<BR>";
+        echo $p->rowcount." Rows Affected<BR>";
 
         $p->disconnect();
-        return $owner['id'];
+        return $owner['ownerId'];
     }
 
     function delete($id)   {
@@ -106,6 +107,34 @@ class OwnerMapper    {
         $p->disconnect();
         return $results;
     }
+
+    function searchDisplay($term) {
+        $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
+        $p->connect();
+        $bindParams = [];
+        $results = $p->query("SELECT *  FROM Owners;",$bindParams);
+
+        $p->disconnect();
+
+        $term = strtolower($term);
+        $searchList = [];
+
+        foreach($results as $result) {
+            if(strpos(strtolower($result->Name), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->City), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->Gender), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->FamilySize), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->OwnerID), $term) !== false){
+                $searchList[] = $result;
+            }
+        }
+        return $searchList;
+    }
+
 
 }
 

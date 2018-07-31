@@ -16,11 +16,11 @@ $page = new Page();
 
 
 $page->header();
+$page->searchForm();
 //Header
 
 $objMapper;
 $sampleObject;
-
 
 $tableName = "Vehicles";
 if(isset($_GET['tables'])){
@@ -33,19 +33,22 @@ if($tableName === "Transportation Type"){
     if (empty($_POST))  {
 
     } else {
-
+        if(isset($_POST['searchTerm'])){
+            $page->displayTransTypeData($objMapper->searchDisplay($_POST['searchTerm']));
+            exit;
+        }
         //Verify the post data
-        if (   !isset($_POST['name'])
+        elseif (!isset($_POST['name'])
             || !isset($_POST['description'])
             || !isset($_POST['wheels'])
-            || !isset($_POST['fuel']) ){
-              echo var_dump($_POST);
+            || !isset($_POST['fuel'])){
+
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
 
             exit;
-        } else {
+        }else {
 
                 //We have the right data, lets go ahead and add the customer via the customer mapper
                 unset($_GET['id']);
@@ -62,12 +65,15 @@ if($tableName === "Transportation Type"){
     if (empty($_POST))  {
 
     } else {
-
+        if(isset($_POST['searchTerm'])){
+            $page->displayOwnerData($objMapper->searchDisplay($_POST['searchTerm']));
+            exit;
+        }
         //Verify the post data
-        if (   !isset($_POST['name'])
+        elseif (!isset($_POST['name'])
             || !isset($_POST['city'])
             || !isset($_POST['gender'])
-            || !isset($_POST['family']) )  {
+            || !isset($_POST['familySize']) )  {
 
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
@@ -92,14 +98,18 @@ if($tableName === "Transportation Type"){
     if (empty($_POST))  {
 
     } else {
-
+        if(isset($_POST['searchTerm'])){
+            $page->displayVehicleData($objMapper->searchDisplay($_POST['searchTerm']));
+            exit;
+        }
         //Verify the post data
-        if (   !isset($_POST['makeModel'])
+        elseif (!isset($_POST['makeModel'])
             || !isset($_POST['color'])
-            || !isset($_POST['owner'])
-            || !isset($_POST['type']) )  {
+            || !isset($_POST['typeId'])
+            || !isset($_POST['ownerId']))  {
 
             //Display an alert
+
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
 
@@ -125,11 +135,9 @@ if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['id'])
     echo '<DIV CLASS="alert alert-success">Customer '.$results.' has been deleted.</DIV>';
 }
 
-
-
 $page->tableChooser();
 
-
+//Display the data
 if($tableName === "Transportation Type"){
   $page->addTransportationTypeForm();
   $page->displaytransTypeData($objMapper->listAll());
@@ -143,8 +151,6 @@ if($tableName === "Transportation Type"){
 
 
 
-
-//Display the data
 
 //Footer
 $page->footer();

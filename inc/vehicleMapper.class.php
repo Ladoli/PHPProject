@@ -13,7 +13,7 @@ class VehicleMapper    {
     function create($postdata)  {
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
-        $vehicle = new vehicle($postdata['makeModel'], $postdata['color'], $postdata['ownerID'], $postdata['typeId']);
+        $vehicle = new Vehicle($postdata['makeModel'], $postdata['color'], $postdata['ownerId'], $postdata['typeId']);
 
         //new PDOAgent
         $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost", DBNAME);
@@ -59,16 +59,16 @@ class VehicleMapper    {
 
     }
 
-    function update($objectToUpdate)   {
+    function update($vehicle)   {
         //Update the data of Object with passed ID
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
 
-        $bindParams = ['VehicleID' =>$objectToUpdate['id'],
-            'MakeModel' =>$objectToUpdate['makeModel'],
-            'Color' =>$objectToUpdate['color'],
-            'OwnerID' =>$objectToUpdate['ownerId'],
-            'TypeID' =>$objectToUpdate['typeId']
+        $bindParams = ['VehicleID' =>$vehicle['id'],
+            'MakeModel' =>$vehicle['makeModel'],
+            'Color' =>$vehicle['color'],
+            'OwnerID' =>$vehicle['ownerId'],
+            'TypeID' =>$vehicle['typeId']
         ];
 
         $p->query("UPDATE Vehicles SET MakeModel= :MakeModel, Color= :Color,
@@ -76,6 +76,7 @@ class VehicleMapper    {
         echo $p->rowcount."Rows Affected<BR>";
 
         $p->disconnect();
+
         return $vehicle['id'];
     }
 
@@ -107,6 +108,32 @@ class VehicleMapper    {
         return $results;
     }
 
+    function searchDisplay($term) {
+        $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
+        $p->connect();
+        $bindParams = [];
+        $results = $p->query("SELECT *  FROM Vehicles;",$bindParams);
+
+        $p->disconnect();
+
+        $term = strtolower($term);
+        $searchList = [];
+
+        foreach($results as $result) {
+            if(strpos(strtolower($result->MakeModel), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->Color), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->OwnerID), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->TypeID), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->VehicleID), $term) !== false){
+                $searchList[] = $result;
+            }
+        }
+        return $searchList;
+    }
 }
 
 ?>

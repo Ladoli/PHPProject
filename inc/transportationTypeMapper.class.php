@@ -61,24 +61,24 @@ class TransportationTypeMapper    {
 
     }
 
-    function update($objectToUpdate)   {
+    function update($tansType)   {
         //Update the data of Object with passed ID
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
 
-        $bindParams = ['TransID' =>$objectToUpdate['id'],
-            'Name' =>$objectToUpdate['name'],
-            'Description' =>$objectToUpdate['description'],
-            'Wheels' =>$objectToUpdate['wheels'],
-            'FuelType' =>$objectToUpdate['fuel']
+        $bindParams = ['TransID'=>$tansType['id'],
+            'Name'=>$tansType['name'],
+            'Description'=>$tansType['description'],
+            'Wheels'=>$tansType['wheels'],
+            'FuelType'=>$tansType['fuel']
         ];
-
+        // var_dump($bindParams);
         $p->query("UPDATE TransportationTypes SET Name= :Name, Description= :Description,
             Wheels= :Wheels, FuelType= :FuelType WHERE TransID = :TransID", $bindParams);
-        echo $p->rowcount."Rows Affected<BR>";
+        echo $p->rowcount." Rows Affected<BR>";
 
         $p->disconnect();
-        return $transportationType['id'];
+        return $tansType['id'];
     }
 
     function delete($id)   {
@@ -106,7 +106,35 @@ class TransportationTypeMapper    {
         $results = $p->query("SELECT *  FROM TransportationTypes;",$bindParams);
 
         $p->disconnect();
+
         return $results;
+    }
+
+    function searchDisplay($term){
+        $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
+        $p->connect();
+        $bindParams = [];
+        $results = $p->query("SELECT *  FROM TransportationTypes;",$bindParams);
+
+        $p->disconnect();
+
+        $term = strtolower($term);
+        $searchList = [];
+
+        foreach($results as $result) {
+            if(strpos(strtolower($result->Name), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->Description), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->Wheels),     $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->FuelType), $term) !== false){
+                $searchList[] = $result;
+            }elseif(strpos(strtolower($result->TransID), $term) !== false){
+                $searchList[] = $result;
+            }
+        }
+        return $searchList;
     }
 
 }

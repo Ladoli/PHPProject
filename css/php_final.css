@@ -1,3 +1,9 @@
-*{
+input[type=submit]{
+  color: black !important;
+}
+
+
+
+:not(input[type=submit]){
   color: rgb(240,240,240);
 }
