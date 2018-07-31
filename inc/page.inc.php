@@ -11,12 +11,12 @@ class Page {
               <TITLE>
               <?php echo $this->title; ?>
               </TITLE>
-              <link href="style.css" rel="stylesheet">
           </HEAD>
         <body style="background-color: black;">
         <div id="particles-js"></div>
         <script src="js/particles.js"></script>
         <link rel="stylesheet" type="text/css" href="css/php_final.css">
+        <link rel="stylesheet" href="sass/final_sass.scss">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script>
           particlesJS.load("particles-js", "assets/particles.json", function() {
@@ -34,9 +34,9 @@ class Page {
         //Provide users ability to choose which table to access, probably using GET variables
         ?>
         <div id="tablePicker">
-        <A HREF="?tables=Owner">Owner</A>
-        <A HREF="?tables=Transportation Type">Transportation Type</A>
-        <A HREF="?tables=Vehicle">Vehicle</A>
+        <A CLASS="tableLinks" HREF="?tables=Owner">Owner</A>
+        <A CLASS="tableLinks" HREF="?tables=Transportation Type">Transportation Type</A>
+        <A CLASS="tableLinks" HREF="?tables=Vehicle">Vehicle</A>
         </div>
 
     <?php }
