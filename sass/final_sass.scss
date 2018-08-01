@@ -1,21 +1,39 @@
-$color: (#AA6373, #C4C689, #392061);
+$color: (#60001D, #566800);
 
 body {
     font-family: 'IBM Plex Sans', sans-serif;
+    text-align: center;
+    color: white;
+    margin: 0px;
 }
 
-input {
-    display: inline-block;
-}
-
-
-td {
-    @error "yssfdds";
-    border: 1px solid;
-
-    @if (true){
-      border-color:red;
-    }@else{
-      border-color:blue;
+table {
+    width: 80%;
+    margin: 0% 10%;
+    border-collapse: collapse;
+    @for $i from 1 through 2 {
+        .rowColor#{$i} {
+            td {
+                border-bottom: 1.5px solid nth($color,$i);
+                padding: 10px;
+            }
+        }
     }
+
+    th {
+        color: rgba(220,220,200,.9);
+        font-size: 1.1em;
+      }
+}
+
+a {
+    color: #800880;
+    text-decoration: none;
+     &:hover {
+        text-decoration: underline;
+     }
+  }
+
+label {
+    padding-left: 10px;
 }

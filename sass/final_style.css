@@ -1,0 +1,30 @@
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  text-align: center;
+  color: white;
+  margin: 0px; }
+
+table {
+  width: 80%;
+  margin: 0% 10%;
+  border-collapse: collapse; }
+  table .rowColor1 td {
+    border-bottom: 1.5px solid #60001D;
+    padding: 10px; }
+  table .rowColor2 td {
+    border-bottom: 1.5px solid #566800;
+    padding: 10px; }
+  table th {
+    color: rgba(220, 220, 200, 0.9);
+    font-size: 1.1em; }
+
+a {
+  color: #800880;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
+label {
+  padding-left: 10px; }
+
+/*# sourceMappingURL=final_styles.css.map */

@@ -16,38 +16,14 @@ class Page {
         <div id="particles-js"></div>
         <script src="js/particles.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-        <script src="js/scriptsass.js"></script>
         <link rel="stylesheet" type="text/css" href="css/php_final.css">
-        <!-- <link rel="stylesheet" href="sass/final_sass.scss"> -->
+        <link rel="stylesheet" type="text/css" href="sass/final_style.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <code type="sass">
-          td {
-              @error "yssfdds";
-              border: 1px solid;
-
-              $color:red;
-              border-color:$color;
-
-              @if(true){
-                border-color:red;
-              }@else{
-                border-color:blue;
-              }
-          }
-
-        </code>
         <script>
           particlesJS.load("particles-js", "assets/particles.json", function() {
           console.log("callback - particles.js config loaded");
           });
-          $(document).ready(function (){
-          	ScriptSass.compileInline().done(function (){
-          	});
-          });
-          // ScriptSass.compileInline();
-
-          // ScriptSass.load("sass/final_sass.scss");
         </script>
       <?php }
 
@@ -63,6 +39,9 @@ class Page {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           }}).then(function(response) {
+            if (!response.ok) {
+              throw Error(response.statusText);
+            }
         return response.json();
       }).then(function(res){
         let imgFooter = document.getElementById("footerImage");
@@ -71,7 +50,12 @@ class Page {
 
         let imgText = document.getElementById("footerText");
         imgText.innerHTML = res.title;
-
+      }).catch(function(error) {
+         console.log(error);
+         let imgText = document.getElementById("footerText");
+         imgText.innerHTML = "Could not display APOD image due to error: " + error;
+         let imgFooter = document.getElementById("footerImage");
+         imgFooter.style.visibility = "hidden";
       });
       </script>
       <div id=footerText></div>
@@ -106,8 +90,7 @@ class Page {
        <FORM class="addForm" METHOD="POST" ACTION="">
 
         <LABEL FOR="name">Name</LABEL>
-        <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" PLACEHOLDER="Full Name">
-        <small id="nameHelp">Customer first and last name.</small>
+        <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Full Name">
 
         <LABEL FOR="city">City</LABEL>
             <INPUT TYPE="text" NAME="city" ID="city">
@@ -120,8 +103,7 @@ class Page {
             </SELECT>
 
         <LABEL FOR="familySize">Family Size</LABEL>
-            <INPUT TYPE="text" NAME="familySize" ID="familySize" ARIA-DESCTIBEDBY="sizeHelp">
-            <small id="sizeHelp">The number of people in your immediate family.</small>
+            <INPUT TYPE="text" NAME="familySize" ID="familySize" PLACEHOLDER="Immediate Family">
 
         <INPUT TYPE="SUBMIT" VALUE="Add Owner">
 
@@ -154,8 +136,7 @@ class Page {
        <FORM class="addForm" METHOD="POST" ACTION="">
 
         <LABEL FOR="name">Name</LABEL>
-        <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp">
-        <small id="nameHelp">Bus, Plane, etc.</small>
+        <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Bus, Plane, etc.">
 
         <LABEL FOR="description">Description</LABEL>
         <INPUT TYPE="text" NAME="description" ID="description">
@@ -164,8 +145,7 @@ class Page {
         <INPUT TYPE="text" NAME="wheels" ID="wheels">
 
         <LABEL FOR="fuel">Fuel</LABEL>
-        <INPUT TYPE="text" NAME="fuel" ID="fuel" ARIA-DESCTIBEDBY="fuelHelp">
-        <small id="fuelHelp">Gas, Diesel, etc.</small>
+        <INPUT TYPE="text" NAME="fuel" ID="fuel" PLACEHOLDER="Gas, Diesel, etc.">
 
         <INPUT TYPE="SUBMIT" VALUE="Add Transportation Type">
 
