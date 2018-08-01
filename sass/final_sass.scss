@@ -1,20 +1,39 @@
-$color: (#AA6373, #C4C689);
+$color: (#60001D, #566800);
 
 body {
     font-family: 'IBM Plex Sans', sans-serif;
-}
-
-input {
-    display: inline-block;
+    text-align: center;
+    color: white;
+    margin: 0px;
 }
 
 table {
+    width: 80%;
+    margin: 0% 10%;
     border-collapse: collapse;
     @for $i from 1 through 2 {
         .rowColor#{$i} {
             td {
-                border: 1px solid nth($color,$i);        
+                border-bottom: 1.5px solid nth($color,$i);        
+                padding: 10px;
             }
         }
     }
+    
+    th {
+        color: rgba(220,220,200,.9);
+        font-size: 1.1em;
+      }
+}
+
+a {
+    color: #800880;
+    text-decoration: none;
+     &:hover {
+        text-decoration: underline;
+     }
+  }
+
+label {
+    padding-left: 10px;
 }

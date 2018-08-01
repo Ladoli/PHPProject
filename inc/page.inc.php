@@ -81,8 +81,7 @@ class Page {
        <FORM class="addForm" METHOD="POST" ACTION="">
 
         <LABEL FOR="name">Name</LABEL>
-        <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" PLACEHOLDER="Full Name">
-        <small id="nameHelp">Customer first and last name.</small>
+        <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Full Name">
 
         <LABEL FOR="city">City</LABEL>
             <INPUT TYPE="text" NAME="city" ID="city">
@@ -95,8 +94,7 @@ class Page {
             </SELECT>
 
         <LABEL FOR="familySize">Family Size</LABEL>
-            <INPUT TYPE="text" NAME="familySize" ID="familySize" ARIA-DESCTIBEDBY="sizeHelp">
-            <small id="sizeHelp">The number of people in your immediate family.</small>
+            <INPUT TYPE="text" NAME="familySize" ID="familySize" PLACEHOLDER="Immediate Family">
 
         <INPUT TYPE="SUBMIT" VALUE="Add Owner">
 
@@ -129,8 +127,7 @@ class Page {
        <FORM class="addForm" METHOD="POST" ACTION="">
 
         <LABEL FOR="name">Name</LABEL>
-        <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp">
-        <small id="nameHelp">Bus, Plane, etc.</small>
+        <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Bus, Plane, etc.">
 
         <LABEL FOR="description">Description</LABEL>
         <INPUT TYPE="text" NAME="description" ID="description">
@@ -139,8 +136,7 @@ class Page {
         <INPUT TYPE="text" NAME="wheels" ID="wheels">
 
         <LABEL FOR="fuel">Fuel</LABEL>
-        <INPUT TYPE="text" NAME="fuel" ID="fuel" ARIA-DESCTIBEDBY="fuelHelp">
-        <small id="fuelHelp">Gas, Diesel, etc.</small>
+        <INPUT TYPE="text" NAME="fuel" ID="fuel" PLACEHOLDER="Gas, Diesel, etc.">
 
         <INPUT TYPE="SUBMIT" VALUE="Add Transportation Type">
 
