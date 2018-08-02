@@ -12,7 +12,7 @@ class TransportationTypeMapper    {
     function create($postdata)  {
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
-        validateNumber($postdata['wheels'],0,"Wheels must be a valid number");
+        validateNumber($postdata['wheels'],0,99,"Wheels must be a valid number within range 1-99.");
 
         $transportationType = new TransportationType(
             cleanString($postdata['name'],30), cleanString($postdata['description'],100), $postdata['wheels'], cleanString($postdata['fuel'],20)
@@ -53,7 +53,7 @@ class TransportationTypeMapper    {
 
     function read($id) {
         //Get the data of Object with passed ID. Return object Object1 constructed with the data
-        validateNumber($id,1,"Tried to read data of invalid entry");
+        validateNumber($id,1,9999,"Tried to read data of invalid entry");
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
         $bindParams = ['id'=>$id];
@@ -66,8 +66,8 @@ class TransportationTypeMapper    {
 
     function update($tansType)   {
         //Update the data of Object with passed ID
-        validateNumber($tansType['wheels'],0,"Wheels must be a valid number");
-        validateNumber($tansType['id'],1,"TransID is invalid or is below 1.");
+        validateNumber($tansType['wheels'],0,99,"Wheels must be a valid number within range 1-99.");
+        validateNumber($tansType['id'],1,9999,"TransID is invalid or not within range 1-9999.");
 
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
@@ -93,7 +93,7 @@ class TransportationTypeMapper    {
 
     function delete($id)   {
         //Delete the data of the object with the passed ID
-        validateNumber($id,1,"Trans ID is invalid or is below 1.");
+        validateNumber($id,1,9999,"Trans ID is invalid or not within range 1-9999.");
 
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();

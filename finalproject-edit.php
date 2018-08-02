@@ -32,12 +32,13 @@ if($tableName === "Transportation Type"){
         //Verify data
         if(empty($_POST['name'])
         || empty($_POST['description'])
-        || empty($_POST['wheels'])
+        || (!isset($_POST['wheels']))
         || empty($_POST['fuel']) ){
 
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
-            Please go back and try again.</DIV> ';
+            </DIV> ';
+            returnForm();
 
             exit;
         } else {
@@ -64,7 +65,8 @@ if($tableName === "Transportation Type"){
                 // var_dump($_POST);
             //Display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
-            Please go back and try again.</DIV> ';
+            </DIV> ';
+            returnForm();
 
             exit;
             } else {
@@ -86,7 +88,8 @@ if($tableName === "Transportation Type"){
             || empty($_POST['ownerId']))  {
                 //Display an alert
                 echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
-                Please go back and try again.</DIV> ';
+                </DIV> ';
+                returnForm();
 
                 exit;
             } else {

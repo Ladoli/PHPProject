@@ -13,7 +13,7 @@ class OwnerMapper    {
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
 
-        validateNumber($postdata['familySize'],1,"Family Size input is invalid. Must a number greater than 1.");
+        validateNumber($postdata['familySize'],1,99,"Family Size is invalid or not within in range 1-99.");
         $owner = new Owner(cleanString($postdata['name'],30), cleanString($postdata['city'],58), cleanString($postdata['gender'],20), $postdata['familySize']);
 
         //new PDOAgent
@@ -51,7 +51,7 @@ class OwnerMapper    {
 
     function read($id) {
         //Get the data of Object with passed ID. Return object Object1 constructed with the data
-        validateNumber($id,1,"Tried to read data of invalid entry");
+        validateNumber($id,1,9999,"Tried to read data of invalid entry");
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
         $bindParams = ['id'=>$id];
@@ -65,8 +65,8 @@ class OwnerMapper    {
 
     function update($owner)   {
         //Update the data of Object with passed ID
-        validateNumber($owner['ownerId'],1,"Owner ID is invalid or is below 1.<br>");
-        validateNumber($owner['ownerId'],1,"FamilySize input is invalid or is below 1.");
+        validateNumber($owner['ownerId'],1,9999,"Owner ID is invalid or not within range 1-9999.");
+        validateNumber($owner['ownerId'],1,99,"FamilySize is invalid or or not within range 1-99.");
 
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
@@ -92,7 +92,7 @@ class OwnerMapper    {
 
     function delete($id)   {
         //Delete the data of the object with the passed ID
-        validateNumber($id,1,"Owner ID is invalid or is below 1.");
+        validateNumber($id,1,9999,"Owner ID is invalid or is not within range 1-9999.");
 
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();

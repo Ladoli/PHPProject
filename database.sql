@@ -9,8 +9,9 @@ DROP TABLE IF EXISTS Owners;
 DROP TABLE IF EXISTS TransportationTypes;
 
 -- City name is 58 as that is the longest city name
+-- We decided to use INT(4) for scalability
 CREATE TABLE IF NOT EXISTS Owners(
-    OwnerID INT(2) PRIMARY KEY AUTO_INCREMENT,
+    OwnerID INT(4) PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(30) NOT NULL,
     City VARCHAR(58) NOT NULL,
     Gender VARCHAR(20) NOT NULL,
@@ -19,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Owners(
 ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS TransportationTypes(
-    TransID INT(2) PRIMARY KEY AUTO_INCREMENT,
+    TransID INT(4) PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(30) NOT NULL,
     Description VARCHAR(100) NOT NULL,
     Wheels INT(2) NOT NULL,
@@ -29,11 +30,11 @@ ENGINE=InnoDB;
 
 -- Longest color name, atleast for web, is lightgoldenrodyellow which is 21 characters. Made it 25 just incase someone places spaces or some other cases.
 CREATE TABLE IF NOT EXISTS Vehicles(
-    VehicleID INT(2) PRIMARY KEY AUTO_INCREMENT,
+    VehicleID INT(4) PRIMARY KEY AUTO_INCREMENT,
     MakeModel VARCHAR(40) NOT NULL,
     Color VARCHAR(25) NOT NULL,
-    OwnerID INT(2) NOT NULL,
-    TypeID INT(2) NOT NULL,
+    OwnerID INT(4) NOT NULL,
+    TypeID INT(4) NOT NULL,
     FOREIGN KEY(OwnerID) REFERENCES owners(OwnerID),
     FOREIGN KEY(TypeID) REFERENCES transportationtypes(TransID)
 )

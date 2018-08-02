@@ -93,7 +93,7 @@ class Page {
     //The three next functions are for creating the forms for adding entries into the various tables
     function addOwnerForm(){
        ?>
-       <FORM class="addForm" METHOD="POST" ACTION="">
+       <FORM class="entryForm" METHOD="POST" ACTION="">
          <div>
           <LABEL FOR="name">Name</LABEL><br>
           <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Full Name">
@@ -126,7 +126,7 @@ class Page {
 
     function addVehicleForm(){
        ?>
-       <FORM class="addForm" METHOD="POST" ACTION="">
+       <FORM class="entryForm" METHOD="POST" ACTION="">
         <div>
           <LABEL FOR="makeModel">Make & Model</LABEL><br>
           <INPUT TYPE="text" NAME="makeModel" ID="makeModel">
@@ -155,7 +155,7 @@ class Page {
 
     function addTransTypeForm(){ ?>
 
-       <FORM class="addForm" METHOD="POST" ACTION="">
+       <FORM class="entryForm" METHOD="POST" ACTION="">
          <div>
           <LABEL FOR="name">Name</LABEL><br>
           <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Bus, Plane, etc.">
@@ -182,7 +182,7 @@ class Page {
     //The three next functions are for the forms to edit entries into the various tables
     function editOwnerForm($ownerData){ ?>
 
-        <FORM METHOD="POST" ACTION="">
+        <FORM class="entryForm" METHOD="POST" ACTION="">
 
         <INPUT TYPE="hidden" NAME="ownerId" VALUE="<?php echo $ownerData->OwnerID; ?>">
 
@@ -222,7 +222,7 @@ class Page {
 
     function editVehicleForm($vehicleData){ ?>
 
-    <FORM METHOD="POST" ACTION="">
+    <FORM class="entryForm" METHOD="POST" ACTION="">
 
     <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $vehicleData->VehicleID; ?>">
 
@@ -244,23 +244,27 @@ class Page {
 
     function editTransTypeForm($transData){ ?>
 
-        <FORM METHOD="POST" ACTION="">
+        <FORM class="entryForm" METHOD="POST" ACTION="">
 
         <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $transData->TransID; ?>">
-
-            <LABEL FOR="name">Name</LABEL>
+          <div>
+            <LABEL FOR="name">Name</LABEL><br>
             <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $transData->Name; ?> ">
-            <small id="nameHelp">Bus, Plane, etc.</small>
-
-            <LABEL FOR="description">Description</LABEL>
+          </div><br>
+          <div style="width:100%; padding: 10px 0px;">
+            <LABEL FOR="description">Description</LABEL><br>
             <INPUT TYPE="text" NAME="description" ID="description" VALUE="<?php echo $transData->Description; ?>">
-
-            <LABEL FOR="wheels">Wheels</LABEL>
+          </div><br>
+          <div>
+            <LABEL FOR="wheels">Wheels</LABEL><br>
             <INPUT TYPE="text" NAME="wheels" ID="wheels" VALUE="<?php echo $transData->Wheels; ?>">
-
-            <LABEL FOR="fuel">Fuel Type</LABEL>
+          </div>
+          <div>
+            <LABEL FOR="fuel">Fuel Type</LABEL><br>
             <INPUT TYPE="text" NAME="fuel" ID="fuel" VALUE="<?php echo $transData->FuelType; ?>">
-
+          </div>
+          <br>
+          <br>
             <INPUT TYPE="SUBMIT" VALUE="Edit Transportation Type">
         </FORM>
         <?php }
@@ -314,7 +318,7 @@ class Page {
          echo
            '</tbody>
            </table>
-           <div><BR>No results found';
+           <div><BR>No results found for search term <p style="color: red; display: inline-block;">'.$_POST['searchTerm'].'</p>';
        }
         $genderArray = [];
         if(count($owners) !== 0){
@@ -374,7 +378,7 @@ class Page {
              echo
                '</tbody>
                </table>
-               <div><BR>No results found';
+               <div><BR>No results found for search term <p style="color: red; display: inline-block;">'.$_POST['searchTerm'].'</p>';
            }
             $colorArray = [];
             if(count($vehicles) !== 0){
@@ -435,7 +439,7 @@ class Page {
                  echo
                    '</tbody>
                    </table>
-                   <div><BR>No results found';
+                   <div><BR>No results found for search term <p style="color: red; display: inline-block;">'.$_POST['searchTerm'].'</p>';
                }
                 $fuelArray = [];
                 if(count($type) !== 0){
