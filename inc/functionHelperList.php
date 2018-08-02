@@ -24,7 +24,7 @@ function cleanString($string,$limit){
   return $string;
 }
 
-//Check if input is a number, if not, display error and die
+//Check if input is a number and it is within range, if not, display error and die
 function validateNumber($num, $min, $max, $message){
   if(filter_var($num, FILTER_VALIDATE_INT) === 0 || filter_var($num, FILTER_VALIDATE_INT,array("options" => array("min_range"=>$min,"max_range"=>$max)))) {
     return;

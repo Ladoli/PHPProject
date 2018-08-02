@@ -122,6 +122,8 @@ class OwnerMapper    {
         return $results;
     }
 
+    //Goes through each property and checks to see if the search term matches or is found. If it is found, it adds it to an array.
+    //Returns an array after going through entry
     function searchDisplay($term) {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
