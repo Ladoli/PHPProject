@@ -17,40 +17,44 @@ $page->header();
 
 $objMapper;
 
-//Ensure the right table is used
+//Get the table being used
 $tableName = "Vehicles";
 if(isset($_GET['tables'])){
     $tableName = $_GET['tables'];
 }
 
+//Code for the next 3 tables are similiar. Will comment mainly on the the first one.
 if($tableName === "Transportation Type"){
     $objMapper = new TransportationTypeMapper();
 
     if(empty($_POST)) {
-
+      //If nothing is posted, do nothing
     } else {
-        //Verify data
+        //Else, verify data we need is complete
         if(empty($_POST['name'])
         || empty($_POST['description'])
         || (!isset($_POST['wheels']))
         || empty($_POST['fuel']) ){
 
-            //Display an alert
+            //Display an alert stating data is incomplete
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             </DIV> ';
             returnForm();
-
             exit;
         } else {
+            //Otherwise, update the object if the data is complete
             $results = $objMapper->update($_POST);
-            echo '
-            <a href="finalproject.php?tables=Transportation Type">Click here to go back</a></DIV>';
+            returnForm();
         }
     }
         if (isset($_GET['id']))   {
+            //If a proper ID target for updating is set, display the update form
             $page->editTransTypeForm($objMapper->read($_GET['id']));
+            returnForm();
         }else {
-            echo '<DIV CLASS="alert alert-success">No ID to edit. Please go update from <a href="Lab08AVi_68076.php">this</a> page.</DIV>';
+            //else display an error message
+            echo '<DIV CLASS="alert alert-success">No ID to edit. </DIV>';
+            returnForm();
         }
 
 } elseif($tableName === "Owner") {
@@ -71,13 +75,15 @@ if($tableName === "Transportation Type"){
             exit;
             } else {
                 $results = $objMapper->update($_POST);
-                echo '<a href="finalproject.php?tables=Owner">Click here to go back</a></DIV>';
+                returnForm();
             }
         }
             if (isset($_GET['id']))   {
                 $page->editOwnerForm($objMapper->read($_GET['id']));
+                returnForm();
             }else {
-                echo '<DIV CLASS="alert alert-success">No owner ID to edit. Please go update a customer from <a href="Lab08AVi_68076.php">this</a> page.</DIV>';
+                echo '<DIV CLASS="alert alert-success">No owner ID to edit.</DIV>';
+                returnForm();
             }
 } else {
     $objMapper = new VehicleMapper();
@@ -94,17 +100,17 @@ if($tableName === "Transportation Type"){
                 exit;
             } else {
                 $results = $objMapper->update($_POST);
-                echo '
-                <a href="finalproject.php?tables=Vehicles">Click here to go back</a></DIV>';
+                returnForm();
+
             }
         }
             if (isset($_GET['id']))   {
                 $page->editVehicleForm($objMapper->read($_GET['id']));
-
                 returnForm();
 
             }else {
-                echo '<DIV CLASS="alert alert-success">No vehicle ID to edit. Please go update a customer from <a href="Lab08AVi_68076.php">this</a> page.</DIV>';
+                echo '<DIV CLASS="alert alert-success">No vehicle ID to edit.</DIV>';
+                returnForm();
             }
 }
 

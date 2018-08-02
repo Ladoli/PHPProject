@@ -1,6 +1,6 @@
 <?php
 
-
+//Logic between different mappers is pretty much the same. Will keep most comments on ownerMapper.class.php
 class VehicleMapper    {
 
     private $lastInsertId = null;

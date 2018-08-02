@@ -17,39 +17,44 @@ require_once('inc/vehicleMapper.class.php');
 require_once('inc/page.inc.php');
 
 $page = new Page();
-
-$page->header();
-$page->searchForm();
 //Header
+$page->header();
+//Search form
+$page->searchForm();
 
+//Declare mapper
 $objMapper;
-$sampleObject;
 
+//Declare default table name
 $tableName = "Vehicles";
+
+//If table name is set, update table name
 if(isset($_GET['tables'])){
     $tableName = $_GET['tables'];
 }
 
-//Check GET data to understand what Table we are dealing with and create an ObjectMapper based on that
+//Check table name to understand what Table we are dealing with and create an ObjectMapper based on that
+//Code is similair for the 3 table types. Therefor, commenting only on the first one.
 if($tableName === "Transportation Type"){
+    //Assign objectMapper to a TransportationMapper class
     $objMapper = new TransportationTypeMapper();
     if (empty($_POST) || isset($_POST['searchTerm']))  {
-
+      //If tere is no POST data or search term is set, do nothing. We can't search and add an entry at the same time you see.
     } else {
 
-        //Verify the post data
+        //Verify the post data is complete for our needs to create a new entry.
     if (!isset($_POST['name'])
             || !isset($_POST['description'])
             || !isset($_POST['wheels'])
             || !isset($_POST['fuel'])){
 
-            //Display an alert
+            //If not, display an alert
             echo '<DIV CLASS="alert alert-danger">You have not entered the appropriate details.<br/>
             Please go back and try again.</DIV> ';
 
             exit;
         }else {
-
+                //Clean get variables incase a delete action get in the way of adding
                 unset($_GET['id']);
                 unset($_GET['action']);
                 $newid = $objMapper->create($_POST);
@@ -88,7 +93,10 @@ if($tableName === "Transportation Type"){
     //Create a default table
     $objMapper = new VehicleMapper();
     if (empty($_POST) || isset($_POST['searchTerm']))  {
-
+      if(isset($_POST['searchTerm'])){ //If there is a set search term, it means we will not be deleting
+        unset($_GET['id']);
+        unset($_GET['action']);
+      }
     } else {
         //Verify the post data
         if (!isset($_POST['makeModel'])
@@ -113,7 +121,6 @@ if($tableName === "Transportation Type"){
 
     }
 }
-
 //Check GET data to see if we should delete a an object
 if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['id']))   {
     //Delete the object
@@ -121,9 +128,12 @@ if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['id'])
     echo '<DIV CLASS="alert alert-success">'.$tableName.' '.$results.' has been deleted.</DIV>';
 }
 
+//Display table chooser
 $page->tableChooser();
 
-//Display the data
+//Display an add form based on the table.
+//Display the data based on the table or display filtered data if there is a set search
+
 if($tableName === "Transportation Type"){
   $page->addTransTypeForm();
 

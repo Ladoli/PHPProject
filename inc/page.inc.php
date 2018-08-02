@@ -222,7 +222,7 @@ class Page {
             <br>
             <br>
             <INPUT TYPE="SUBMIT" VALUE="Edit Owner">
-        </FORM>
+        </FORM><br>
         <?php }
 
     function editVehicleForm($vehicleData){ ?>
@@ -250,7 +250,7 @@ class Page {
         <br>
         <br>
         <INPUT TYPE="SUBMIT" VALUE="Edit Vehicle">
-    </FORM>
+    </FORM><br>
     <?php }
 
     function editTransTypeForm($transData){ ?>
@@ -277,7 +277,7 @@ class Page {
           <br>
           <br>
             <INPUT TYPE="SUBMIT" VALUE="Edit Transportation Type">
-        </FORM>
+        </FORM><br>
         <?php }
 
     //The three next functions are for displaying the entries of various tables.

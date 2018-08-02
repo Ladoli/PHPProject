@@ -1,21 +1,20 @@
 <?php
 
-
+//Logic between different mappers is pretty much the same. Will keep most comments on this one.
 class OwnerMapper    {
 
     private $lastInsertId = null;
     private $attributes = null;
 
-    //We will use this to cvar_dump($_POST['Search']);onstruct our queries. Particularly the "FROM" part of queries
-
 
     function create($postdata)  {
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
-
+        //Validate numerical input
         validateNumber($postdata['familySize'],1,99,"Family Size is invalid or not within in range 1-99.");
         $owner = new Owner(cleanString($postdata['name'],30), cleanString($postdata['city'],58), cleanString($postdata['gender'],20), $postdata['familySize']);
-
+        //Clean strings
+        //Create object based on cleaned and validated input
         //new PDOAgent
         $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost", DBNAME);
 
