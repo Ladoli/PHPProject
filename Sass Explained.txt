@@ -1,0 +1,30 @@
+Since Sass is a preprocessor the code itself is not understood by a web browser.
+The only way to use the code is to export it to a .css file. 
+We were able to accomplish that by adding a sass gem package to Ruby. 
+From there we just load up the Ruby Command Prompt and tell it which file has the input and which 
+file we want the ouput to. Then you use the watch feature to check whether the file contents have been changed. 
+
+To edit: 
+Think about Sass like nesting Css selectors. For example instead of typing -
+a {
+    color: red; 
+}
+
+a:hover {
+    color: blue;
+}
+
+We can just write:
+a {
+    color: red;
+    &:hover {
+        color: blue;
+    }
+}
+
+We are also able to use variables, functions, and loops.
+
+To change things without using Sass:
+Just go to the final_style.css file in the Sass folder and edit that way.
+The code isn't the easiest to read as some things are squished but that's just because its the output of the
+final_sass.scss file.  

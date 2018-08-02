@@ -1,6 +1,9 @@
 <?php
 
-//Database user, root, link/url, Database name
+//Define our constants for configuration
+define('DBUSER', "root");
+define('DBPASSWD', "");
+define('DBNAME', "php_assign");
 
 
 ?>
