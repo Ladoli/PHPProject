@@ -50,7 +50,6 @@ if($tableName === "Transportation Type"){
         if (isset($_GET['id']))   {
             //If a proper ID target for updating is set, display the update form
             $page->editTransTypeForm($objMapper->read($_GET['id']));
-            returnForm();
         }else {
             //else display an error message
             echo '<DIV CLASS="alert alert-success">No ID to edit. </DIV>';
@@ -80,7 +79,6 @@ if($tableName === "Transportation Type"){
         }
             if (isset($_GET['id']))   {
                 $page->editOwnerForm($objMapper->read($_GET['id']));
-                returnForm();
             }else {
                 echo '<DIV CLASS="alert alert-success">No owner ID to edit.</DIV>';
                 returnForm();
@@ -106,7 +104,6 @@ if($tableName === "Transportation Type"){
         }
             if (isset($_GET['id']))   {
                 $page->editVehicleForm($objMapper->read($_GET['id']));
-                returnForm();
 
             }else {
                 echo '<DIV CLASS="alert alert-success">No vehicle ID to edit.</DIV>';
