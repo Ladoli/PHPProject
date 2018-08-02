@@ -4,6 +4,10 @@ class Page {
 
     private $title = "Emelie";
 
+    //Load relevant javascript files.
+    //Load external files such as Google fonts
+    //Load style sheets
+    //Run particlesJS
     function header() { ?>
         <!DOCTYPE HTML>
           <HTML LANG="en">
@@ -15,7 +19,6 @@ class Page {
         <body style="background-color: black;">
         <div id="particles-js"></div>
         <script src="js/particles.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="css/php_final.css">
         <link rel="stylesheet" type="text/css" href="sass/final_style.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700" rel="stylesheet">
@@ -33,6 +36,9 @@ class Page {
       // This technology calls on the apod API to display information about a Nasa Image of the day
       // This information is then used to display the image as a footer.
       //The image would change daily.
+      //This technolgoy uses promises
+      //Then triggers a function that happens only when the previous first action receives a response
+      //Catch triggers if there is an error, this can do checked by simply disconnecting internet
       fetch('https://api.nasa.gov/planetary/apod?api_key=WmGwHfgi8DtKcLUFjLnucKSnOYTzhDstd8XQiwYV',{
           method: 'GET',
           headers: {
@@ -64,8 +70,8 @@ class Page {
     </HTML>
     <?php }
 
+    //Provide users ability to choose which table to access, probably using variable tables
     function tableChooser() {
-        //Provide users ability to choose which table to access, probably using GET variables
         ?>
         <div id="tablePicker">
           <table>
@@ -82,9 +88,9 @@ class Page {
             </tr>
           </table>
         </div>
-
     <?php }
 
+    //The three next functions are for creating the forms for adding entries into the various tables
     function addOwnerForm(){
        ?>
        <FORM class="addForm" METHOD="POST" ACTION="">
@@ -173,6 +179,7 @@ class Page {
     </FORM>
     <?php }
 
+    //The three next functions are for the forms to edit entries into the various tables
     function editOwnerForm($ownerData){ ?>
 
         <FORM METHOD="POST" ACTION="">
@@ -258,6 +265,14 @@ class Page {
         </FORM>
         <?php }
 
+    //The three next functions are for displaying the entries of various tables.
+    //The logic is similiar for each.
+    //If passed data is not empty, display the data
+    //For each entry in owners, display it in a table row. The $odd is to use alternating classes which will be used later for UI purposes
+    //Otherwise display a messages saying no results were found
+    //Declare an empty array to hold our statistics data
+    //If there are entries, loop through them and check if the corresponding data exists. If not, create it. Otherwise, increase its value.
+    //Display each entry in our array, key and value.
     function displayOwnerData($owners) { ?>
     <table>
         <thead>
@@ -439,6 +454,7 @@ class Page {
                 echo '</div>';
             }
 
+        //Display the search form
         function searchForm() { ?>
             <FORM METHOD="POST" ACTION="">
             <INPUT TYPE = "TEXT" NAME="searchTerm">

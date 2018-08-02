@@ -15,7 +15,7 @@ class TransportationTypeMapper    {
         validateNumber($postdata['wheels'],0,"Wheels must be a valid number");
 
         $transportationType = new TransportationType(
-            cleanString($postdata['name']), cleanString($postdata['description']), $postdata['wheels'], cleanString($postdata['fuel'])
+            cleanString($postdata['name'],30), cleanString($postdata['description'],100), $postdata['wheels'], cleanString($postdata['fuel'],20)
           );
 
         //new PDOAgent
@@ -73,10 +73,10 @@ class TransportationTypeMapper    {
         $p->connect();
 
         $bindParams = ['TransID'=>$tansType['id'],
-            'Name'=>cleanString($tansType['name']),
-            'Description'=>cleanString($tansType['description']),
+            'Name'=>cleanString($tansType['name'],30),
+            'Description'=>cleanString($tansType['description'],100),
             'Wheels'=>$tansType['wheels'],
-            'FuelType'=>cleanString($tansType['fuel'])
+            'FuelType'=>cleanString($tansType['fuel'],20)
         ];
         // var_dump($bindParams);
         $p->query("UPDATE TransportationTypes SET Name= :Name, Description= :Description,

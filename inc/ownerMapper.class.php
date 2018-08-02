@@ -14,7 +14,7 @@ class OwnerMapper    {
         //Insert a new customer based on the post data that was inserted
 
         validateNumber($postdata['familySize'],1,"Family Size input is invalid. Must a number greater than 1.");
-        $owner = new Owner(cleanString($postdata['name']), cleanString($postdata['city']), cleanString($postdata['gender']), $postdata['familySize']);
+        $owner = new Owner(cleanString($postdata['name'],30), cleanString($postdata['city'],58), cleanString($postdata['gender'],20), $postdata['familySize']);
 
         //new PDOAgent
         $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost", DBNAME);
@@ -71,9 +71,9 @@ class OwnerMapper    {
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
         $bindParams = ['OwnerID' =>$owner['ownerId'],
-            'Name' =>cleanString($owner['name']),
-            'City' =>cleanString($owner['city']),
-            'Gender' =>cleanString($owner['gender']),
+            'Name' =>cleanString($owner['name'],30),
+            'City' =>cleanString($owner['city'],58),
+            'Gender' =>cleanString($owner['gender'],20),
             'FamilySize' =>$owner['familySize']
         ];
 
