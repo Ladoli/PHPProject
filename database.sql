@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS Owners;
 DROP TABLE IF EXISTS TransportationTypes;
 
 -- City name is 58 as that is the longest city name
--- We decided to use INT(4) for scalability
+-- We decided to use INT(4) for scalability of IDs
 CREATE TABLE IF NOT EXISTS Owners(
     OwnerID INT(4) PRIMARY KEY AUTO_INCREMENT,
     Name VARCHAR(30) NOT NULL,

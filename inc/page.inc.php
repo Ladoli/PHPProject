@@ -180,42 +180,47 @@ class Page {
     <?php }
 
     //The three next functions are for the forms to edit entries into the various tables
-    function editOwnerForm($ownerData){ ?>
+    function editOwnerForm($ownerData){
+      ?>
 
         <FORM class="entryForm" METHOD="POST" ACTION="">
 
         <INPUT TYPE="hidden" NAME="ownerId" VALUE="<?php echo $ownerData->OwnerID; ?>">
 
-            <LABEL FOR="name">Name</LABEL>
-            <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $ownerData->Name; ?> ">
-            <small id="nameHelp" >Customer first and last name.</small>
-
-            <LABEL FOR="city">City</LABEL>
-            <INPUT TYPE="text" NAME="city" ID="city" VALUE="<?php echo $ownerData->City; ?>">
-
-            <LABEL FOR="gender">Gender</LABEL>
-            <SELECT NAME="gender" ID="gender">
-
-            <?php
-            if(strcmp($ownerData->Gender,"female")) {
-                echo '<OPTION ID="gender" VALUE="Female" SELECTED>Female</OPTION>
-                <OPTION ID="gender" VALUE="Male">Male</OPTION>
-                <OPTION ID="gender" VALUE="Other">Other</OPTION>';
-            } elseif(strcmp($ownerData->Gender,"male")) {
-                echo '<OPTION ID="gender" VALUE="Female">Female</OPTION>
-                <OPTION ID="gender" VALUE="Male" SELECTED>Male</OPTION>
-                <OPTION ID="gender" VALUE="Other">Other</OPTION>';
-            } else {
-                echo '<OPTION ID="gender" VALUE="Female">Female</OPTION>
-                <OPTION ID="gender" VALUE="Male">Male</OPTION>
-                <OPTION ID="gender" VALUE="Other" SELECTED>Other</OPTION>';
-            }
-            ?>
-            </SELECT>
-
+            <div>
+              <LABEL FOR="name">Name</LABEL><br>
+              <INPUT TYPE="text" NAME="name" ID="name" ARIA-DESCTIBEDBY="nameHelp" VALUE="<?php echo $ownerData->Name; ?> ">
+            </div>
+            <div>
+              <LABEL FOR="city">City</LABEL><br>
+              <INPUT TYPE="text" NAME="city" ID="city" VALUE="<?php echo $ownerData->City; ?>">
+            </div>
+            <div>
+              <LABEL FOR="gender">Gender</LABEL><br>
+              <SELECT NAME="gender" ID="gender">
+              <?php
+              if(strcmp($ownerData->Gender,"Female") === 0) {
+                  echo '<OPTION ID="gender" VALUE="Female" SELECTED>Female</OPTION>
+                  <OPTION ID="gender" VALUE="Male">Male</OPTION>
+                  <OPTION ID="gender" VALUE="Other">Other</OPTION>';
+              } elseif(strcmp($ownerData->Gender,"Male") === 0) {
+                  echo '<OPTION ID="gender" VALUE="Female">Female</OPTION>
+                  <OPTION ID="gender" VALUE="Male" SELECTED>Male</OPTION>
+                  <OPTION ID="gender" VALUE="Other">Other</OPTION>';
+              } else {
+                  echo '<OPTION ID="gender" VALUE="Female">Female</OPTION>
+                  <OPTION ID="gender" VALUE="Male">Male</OPTION>
+                  <OPTION ID="gender" VALUE="Other" SELECTED>Other</OPTION>';
+              }
+              ?>
+              </SELECT>
+            </div>
+            <div>
             <LABEL FOR="familySize">Family Size</LABEL>
             <INPUT TYPE="text" NAME="familySize" ID="familySize" VALUE="<?php echo $ownerData->FamilySize; ?>">
-
+            </div>
+            <br>
+            <br>
             <INPUT TYPE="SUBMIT" VALUE="Edit Owner">
         </FORM>
         <?php }
@@ -226,18 +231,24 @@ class Page {
 
     <INPUT TYPE="hidden" NAME="id" VALUE="<?php echo $vehicleData->VehicleID; ?>">
 
-        <LABEL FOR="makeModel">Make & Model</LABEL>
-        <INPUT TYPE="text" NAME="makeModel" ID="makeModel" VALUE="<?php echo $vehicleData->MakeModel; ?> ">
-
-        <LABEL FOR="color">Color</LABEL>
-        <INPUT TYPE="text" NAME="color" ID="color" VALUE="<?php echo $vehicleData->Color; ?>">
-
-        <LABEL FOR="ownerId">OwnerID</LABEL>
-        <INPUT TYPE="text" NAME="ownerId" ID="ownerId" VALUE="<?php echo $vehicleData->OwnerID ?>">
-
-        <LABEL FOR="typeId">TypeID</LABEL>
-        <INPUT TYPE="text" NAME="typeId" ID="typeId" VALUE="<?php echo $vehicleData->TypeID ; ?>">
-
+        <div>
+          <LABEL FOR="makeModel">Make & Model</LABEL><br>
+          <INPUT TYPE="text" NAME="makeModel" ID="makeModel" VALUE="<?php echo $vehicleData->MakeModel; ?> ">
+        </div>
+        <div>
+          <LABEL FOR="color">Color</LABEL><br>
+          <INPUT TYPE="text" NAME="color" ID="color" VALUE="<?php echo $vehicleData->Color; ?>">
+        </div>
+        <div>
+          <LABEL FOR="ownerId">OwnerID</LABEL><br>
+          <INPUT TYPE="text" NAME="ownerId" ID="ownerId" VALUE="<?php echo $vehicleData->OwnerID ?>">
+        </div>
+        <div>
+          <LABEL FOR="typeId">TypeID</LABEL>
+          <INPUT TYPE="text" NAME="typeId" ID="typeId" VALUE="<?php echo $vehicleData->TypeID ; ?>">
+        </div>
+        <br>
+        <br>
         <INPUT TYPE="SUBMIT" VALUE="Edit Vehicle">
     </FORM>
     <?php }
