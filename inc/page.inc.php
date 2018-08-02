@@ -318,7 +318,7 @@ class Page {
             <TD>'.$owner->City.'</TD>
             <TD>'.$owner->Gender.'</TD>
             <TD>'.$owner->FamilySize.'</TD>
-            <TD class="actionLinks"><A HREF="finalproject-edit.php?tables=Owner&id='.$owner->OwnerID.'">Update</A></TD>
+            <TD class="actionLinks"><A HREF="MACaroni-edit.php?tables=Owner&id='.$owner->OwnerID.'">Update</A></TD>
             <TD class="actionLinks"><A HREF="?tables=Owner&action=delete&id='.$owner->OwnerID.'">Delete</A></TD>
             </TR>';
          }
@@ -378,7 +378,7 @@ class Page {
                 <TD>'.$vehicle->Color.'</TD>
                 <TD>'.$vehicle->OwnerID.'</TD>
                 <TD>'.$vehicle->TypeID.'</TD>
-                <TD class="actionLinks"><A HREF="finalproject-edit.php?tables=Vehicle&id='.$vehicle->VehicleID.'">Update</A></TD>
+                <TD class="actionLinks"><A HREF="MACaroni-edit.php?tables=Vehicle&id='.$vehicle->VehicleID.'">Update</A></TD>
                 <TD class="actionLinks"><A HREF="?tables=Vehicle&action=delete&id='.$vehicle->VehicleID.'">Delete</A></TD>
                 </TR>';
              }
@@ -439,7 +439,7 @@ class Page {
                     <TD>'.$col->Description.'</TD>
                     <TD>'.$col->Wheels.'</TD>
                     <TD>'.$col->FuelType.'</TD>
-                    <TD class="actionLinks"><A HREF="finalproject-edit.php?tables=Transportation Type&id='.$col->TransID.'">Update</A></TD>
+                    <TD class="actionLinks"><A HREF="MACaroni-edit.php?tables=Transportation Type&id='.$col->TransID.'">Update</A></TD>
                     <TD class="actionLinks"><A HREF="?tables=Transportation Type&action=delete&id='.$col->TransID.'">Delete</A></TD>
                     </TR>';
                  }

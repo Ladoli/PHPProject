@@ -5,9 +5,9 @@
 //Used to improve user experience letting them go back in case they come across errors
 function returnForm(){
   if(isset($_GET['tables'])){
-      echo '<a href="finalproject.php?tables='.$_GET['tables'].'">Click here to go back</a>';
+      echo '<a href="MACaroni.php?tables='.$_GET['tables'].'">Click here to go back</a>';
   }else{
-    echo '<a href="finalproject.php">Click here to go back</a>';
+    echo '<a href="MACaroni.php">Click here to go back</a>';
   }
 }
 
