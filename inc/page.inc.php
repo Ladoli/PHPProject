@@ -348,8 +348,8 @@ class Page {
                 <TD>'.$vehicle->Color.'</TD>
                 <TD>'.$vehicle->OwnerID.'</TD>
                 <TD>'.$vehicle->TypeID.'</TD>
-                <TD><A class="actionLinks" HREF="finalproject-edit.php?tables=Vehicle&id='.$vehicle->VehicleID.'">Update</A></TD>
-                <TD><A class="actionLinks" HREF="?tables=Vehicle&action=delete&id='.$vehicle->VehicleID.'">Delete</A></TD>
+                <TD class="actionLinks"><A HREF="finalproject-edit.php?tables=Vehicle&id='.$vehicle->VehicleID.'">Update</A></TD>
+                <TD class="actionLinks"><A HREF="?tables=Vehicle&action=delete&id='.$vehicle->VehicleID.'">Delete</A></TD>
                 </TR>';
              }
              echo '</tbody>
@@ -409,8 +409,8 @@ class Page {
                     <TD>'.$col->Description.'</TD>
                     <TD>'.$col->Wheels.'</TD>
                     <TD>'.$col->FuelType.'</TD>
-                    <TD><A class="actionLinks" HREF="finalproject-edit.php?tables=Transportation Type&id='.$col->TransID.'">Update</A></TD>
-                    <TD><A class="actionLinks" HREF="?tables=Transportation Type&action=delete&id='.$col->TransID.'">Delete</A></TD>
+                    <TD class="actionLinks"><A HREF="finalproject-edit.php?tables=Transportation Type&id='.$col->TransID.'">Update</A></TD>
+                    <TD class="actionLinks"><A HREF="?tables=Transportation Type&action=delete&id='.$col->TransID.'">Delete</A></TD>
                     </TR>';
                  }
                  echo '</tbody>
