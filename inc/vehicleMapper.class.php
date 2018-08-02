@@ -40,8 +40,9 @@ class VehicleMapper    {
         //Disconnect from the database
         $p->disconnect();
 
-        if ($p->rowcount != 1)  {
-            trigger_error("Something went horribly wrong!");
+        if ($p->rowcount < 1)  {
+          echo '<DIV CLASS="alert alert-danger">Something went horribly wrong!</DIV>';
+            returnForm();
             die();
         }
 

@@ -102,8 +102,10 @@ class TransportationTypeMapper    {
         echo $p->rowcount." Rows Affected<BR>";
 
         $p->disconnect();
-        if ($p->rowcount != 1){
-            trigger_error("Something went horribly wrong!");
+        if ($p->rowcount < 1){
+            echo '<DIV CLASS="alert alert-danger">Something went horribly wrong!<br>
+                This tranportation type still has vehicles. Please remove all vehicles with this type first.</DIV>';
+            returnForm();
             die();
         }
 

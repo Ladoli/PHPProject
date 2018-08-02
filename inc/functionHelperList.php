@@ -2,7 +2,11 @@
 //This file is mainly for helper functions that can be reused
 
 function returnForm(){
+  if(isset($_GET['tables'])){
+      echo '<a href="finalproject.php?tables='.$_GET['tables'].'">Click here to go back</a>';
+  }else{
     echo '<a href="finalproject.php">Click here to go back</a>';
+  }
 }
 
 function cleanString($string){

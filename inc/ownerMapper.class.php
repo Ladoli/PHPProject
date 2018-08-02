@@ -101,8 +101,10 @@ class OwnerMapper    {
         echo $p->rowcount." Rows Affected<BR>";
 
         $p->disconnect();
-        if ($p->rowcount != 1){
-            trigger_error("Something went horribly wrong!");
+        if ($p->rowcount < 1){
+          echo '<DIV CLASS="alert alert-danger">Something went horribly wrong!<br>
+                This owner still has vehicles. Please remove all their owned vehicles first.</DIV>';
+            returnForm();
             die();
         }
 
