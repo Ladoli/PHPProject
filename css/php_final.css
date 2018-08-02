@@ -6,6 +6,7 @@ input {
   display: inline-block;
   border-radius: 5px;
   text-align: center;
+  box-shadow:0 0 4px #fff,0 0 7px #fff,0 0 11px #fff,0 0 14px blue,0 0 23px blue;
 }
 
 input[type=submit] {
@@ -73,4 +74,5 @@ form {
 select{
   border-radius: 5px;
   width: 80%;
+  box-shadow:0 0 4px #fff,0 0 7px #fff,0 0 11px #fff,0 0 14px blue,0 0 23px blue;
 }
