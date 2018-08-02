@@ -96,7 +96,7 @@ class Page {
        <FORM class="entryForm" METHOD="POST" ACTION="">
          <div>
           <LABEL FOR="name">Name</LABEL><BR>
-          <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Full Name">
+          <INPUT TYPE="text" NAME="name" ID="name">
          </div>
 
         <div>
@@ -115,7 +115,7 @@ class Page {
 
         <div>
           <LABEL FOR="familySize">Family Size</LABEL><BR>
-          <INPUT TYPE="text" NAME="familySize" ID="familySize" PLACEHOLDER="Immediate Family">
+          <INPUT TYPE="text" NAME="familySize" ID="familySize" PLACEHOLDER="Immediate Family Size">
         </div>
         <BR>
         <BR>
