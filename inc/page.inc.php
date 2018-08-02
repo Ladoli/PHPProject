@@ -4,6 +4,10 @@ class Page {
 
     private $title = "Emelie";
 
+    //Load relevant javascript files.
+    //Load external files such as Google fonts
+    //Load style sheets
+    //Run particlesJS
     function header() { ?>
         <!DOCTYPE HTML>
           <HTML LANG="en">
@@ -15,10 +19,9 @@ class Page {
         <body style="background-color: black;">
         <div id="particles-js"></div>
         <script src="js/particles.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="css/php_final.css">
         <link rel="stylesheet" type="text/css" href="sass/final_style.css">
-        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <script>
           particlesJS.load("particles-js", "assets/particles.json", function() {
@@ -33,6 +36,9 @@ class Page {
       // This technology calls on the apod API to display information about a Nasa Image of the day
       // This information is then used to display the image as a footer.
       //The image would change daily.
+      //This technolgoy uses promises
+      //Then triggers a function that happens only when the previous first action receives a response
+      //Catch triggers if there is an error, this can do checked by simply disconnecting internet
       fetch('https://api.nasa.gov/planetary/apod?api_key=WmGwHfgi8DtKcLUFjLnucKSnOYTzhDstd8XQiwYV',{
           method: 'GET',
           headers: {
@@ -64,8 +70,8 @@ class Page {
     </HTML>
     <?php }
 
+    //Provide users ability to choose which table to access, probably using variable tables
     function tableChooser() {
-        //Provide users ability to choose which table to access, probably using GET variables
         ?>
         <div id="tablePicker">
           <table>
@@ -82,29 +88,37 @@ class Page {
             </tr>
           </table>
         </div>
-
     <?php }
 
+    //The three next functions are for creating the forms for adding entries into the various tables
     function addOwnerForm(){
        ?>
        <FORM class="addForm" METHOD="POST" ACTION="">
+         <div>
+          <LABEL FOR="name">Name</LABEL><br>
+          <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Full Name">
+         </div>
 
-        <LABEL FOR="name">Name</LABEL>
-        <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Full Name">
+        <div>
+          <LABEL FOR="city">City</LABEL><br>
+          <INPUT TYPE="text" NAME="city" ID="city">
+        </div>
 
-        <LABEL FOR="city">City</LABEL>
-            <INPUT TYPE="text" NAME="city" ID="city">
+        <div>
+          <LABEL FOR="gender">Gender</LABEL><br>
+          <SELECT NAME="gender" ID="gender">
+              <OPTION VALUE="Female" SELECTED>Female</OPTION>
+              <OPTION VALUE="Male">Male</OPTION>
+              <OPTION VALUE="Other">Other</OPTION>
+          </SELECT>
+        </div>
 
-            <LABEL FOR="gender">Gender</LABEL>
-            <SELECT NAME="gender" ID="gender">
-                <OPTION VALUE="Female" SELECTED>Female</OPTION>
-                <OPTION VALUE="Male">Male</OPTION>
-                <OPTION VALUE="Other">Other</OPTION>
-            </SELECT>
-
-        <LABEL FOR="familySize">Family Size</LABEL>
-            <INPUT TYPE="text" NAME="familySize" ID="familySize" PLACEHOLDER="Immediate Family">
-
+        <div>
+          <LABEL FOR="familySize">Family Size</LABEL><br>
+          <INPUT TYPE="text" NAME="familySize" ID="familySize" PLACEHOLDER="Immediate Family">
+        </div>
+        <br>
+        <br>
         <INPUT TYPE="SUBMIT" VALUE="Add Owner">
 
     </FORM>
@@ -113,19 +127,27 @@ class Page {
     function addVehicleForm(){
        ?>
        <FORM class="addForm" METHOD="POST" ACTION="">
+        <div>
+          <LABEL FOR="makeModel">Make & Model</LABEL><br>
+          <INPUT TYPE="text" NAME="makeModel" ID="makeModel">
+        </div>
 
-        <LABEL FOR="makeModel">Make & Model</LABEL>
-        <INPUT TYPE="text" NAME="makeModel" ID="makeModel">
+        <div>
+          <LABEL FOR="color">Color</LABEL><br>
+          <INPUT TYPE="text" NAME="color" ID="color">
+        </div>
 
-        <LABEL FOR="color">Color</LABEL>
-        <INPUT TYPE="text" NAME="color" ID="color">
+        <div>
+          <LABEL FOR="ownerId">OwnerID</LABEL><br>
+          <INPUT TYPE="text" NAME="ownerId" ID="ownerId">
+        </div>
 
-        <LABEL FOR="ownerId">OwnerID</LABEL>
-        <INPUT TYPE="text" NAME="ownerId" ID="ownerId">
-
-        <LABEL FOR="typeId">TypeID</LABEL>
-        <INPUT TYPE="text" NAME="typeId" ID="typeId">
-
+        <div>
+          <LABEL FOR="typeId">TypeID</LABEL><br>
+          <INPUT TYPE="text" NAME="typeId" ID="typeId">
+        </div>
+          <br>
+          <br>
         <INPUT TYPE="SUBMIT" VALUE="Add Vehicle">
 
     </FORM>
@@ -134,24 +156,30 @@ class Page {
     function addTransTypeForm(){ ?>
 
        <FORM class="addForm" METHOD="POST" ACTION="">
-
-        <LABEL FOR="name">Name</LABEL>
-        <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Bus, Plane, etc.">
-
-        <LABEL FOR="description">Description</LABEL>
-        <INPUT TYPE="text" NAME="description" ID="description">
-
-        <LABEL FOR="wheels">Wheels</LABEL>
-        <INPUT TYPE="text" NAME="wheels" ID="wheels">
-
-        <LABEL FOR="fuel">Fuel</LABEL>
-        <INPUT TYPE="text" NAME="fuel" ID="fuel" PLACEHOLDER="Gas, Diesel, etc.">
-
+         <div>
+          <LABEL FOR="name">Name</LABEL><br>
+          <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Bus, Plane, etc.">
+        </div>
+        <div>
+          <LABEL FOR="description">Description</LABEL><br>
+          <INPUT TYPE="text" NAME="description" ID="description">
+        </div>
+        <div>
+          <LABEL FOR="wheels">Wheels</LABEL>
+          <INPUT TYPE="text" NAME="wheels" ID="wheels">
+        </div>
+        <div>
+          <LABEL FOR="fuel">Fuel</LABEL>
+          <INPUT TYPE="text" NAME="fuel" ID="fuel" PLACEHOLDER="Gas, Diesel, etc.">
+        </div>
+        <br>
+        <br>
         <INPUT TYPE="SUBMIT" VALUE="Add Transportation Type">
 
     </FORM>
     <?php }
 
+    //The three next functions are for the forms to edit entries into the various tables
     function editOwnerForm($ownerData){ ?>
 
         <FORM METHOD="POST" ACTION="">
@@ -237,6 +265,14 @@ class Page {
         </FORM>
         <?php }
 
+    //The three next functions are for displaying the entries of various tables.
+    //The logic is similiar for each.
+    //If passed data is not empty, display the data
+    //For each entry in owners, display it in a table row. The $odd is to use alternating classes which will be used later for UI purposes
+    //Otherwise display a messages saying no results were found
+    //Declare an empty array to hold our statistics data
+    //If there are entries, loop through them and check if the corresponding data exists. If not, create it. Otherwise, increase its value.
+    //Display each entry in our array, key and value.
     function displayOwnerData($owners) { ?>
     <table>
         <thead>
@@ -267,28 +303,33 @@ class Page {
             <TD>'.$owner->City.'</TD>
             <TD>'.$owner->Gender.'</TD>
             <TD>'.$owner->FamilySize.'</TD>
-            <TD><A HREF="finalproject-edit.php?tables=Owner&id='.$owner->OwnerID.'">Update</A></TD>
-            <TD><A HREF="?tables=Owner&action=delete&id='.$owner->OwnerID.'">Delete</A></TD>
+            <TD class="actionLinks"><A HREF="finalproject-edit.php?tables=Owner&id='.$owner->OwnerID.'">Update</A></TD>
+            <TD class="actionLinks"><A HREF="?tables=Owner&action=delete&id='.$owner->OwnerID.'">Delete</A></TD>
             </TR>';
          }
-       }?>
-
-        </tbody>
-        </table>
-        <div>
-        <h1>Stats for Gender</h1>
-    <?php
+         echo '</tbody>
+         </table>
+         <div>';
+       }else{
+         echo
+           '</tbody>
+           </table>
+           <div><BR>No results found';
+       }
         $genderArray = [];
-        foreach($owners as $owner) {
-            if(key_exists($owner->Gender,$genderArray)){
-                $genderArray[$owner->Gender] += 1;
-            } else {
-                $genderArray[$owner->Gender] = 1;
-            }
-        }
+        if(count($owners) !== 0){
+          echo '<h1>Stats for Gender</h1>';
+          foreach($owners as $owner) {
+              if(key_exists($owner->Gender,$genderArray)){
+                  $genderArray[$owner->Gender] += 1;
+              } else {
+                  $genderArray[$owner->Gender] = 1;
+              }
+          }
 
-        foreach($genderArray as $item=>$count) {
-            echo $item.': '.$count.'<BR>';
+          foreach($genderArray as $item=>$count) {
+              echo $item.': '.$count.'<BR>';
+          }
         }
         echo '<div>';
     }
@@ -322,29 +363,32 @@ class Page {
                 <TD>'.$vehicle->Color.'</TD>
                 <TD>'.$vehicle->OwnerID.'</TD>
                 <TD>'.$vehicle->TypeID.'</TD>
-                <TD><A HREF="finalproject-edit.php?tables=Vehicle&id='.$vehicle->VehicleID.'">Update</A></TD>
-                <TD><A HREF="?tables=Vehicle&action=delete&id='.$vehicle->VehicleID.'">Delete</A></TD>
+                <TD class="actionLinks"><A HREF="finalproject-edit.php?tables=Vehicle&id='.$vehicle->VehicleID.'">Update</A></TD>
+                <TD class="actionLinks"><A HREF="?tables=Vehicle&action=delete&id='.$vehicle->VehicleID.'">Delete</A></TD>
                 </TR>';
              }
-           }?>
-
-            </tbody>
-            </table>
-            <div>
-
-            <h1>Stats for Color</h1>
-        <?php
+             echo '</tbody>
+             </table>
+             <div>';
+           }else{
+             echo
+               '</tbody>
+               </table>
+               <div><BR>No results found';
+           }
             $colorArray = [];
-            foreach($vehicles as $vehicle){
-                if(key_exists($vehicle->Color,$colorArray)){
-                    $colorArray[$vehicle->Color] += 1;
-                } else {
-                    $colorArray[$vehicle->Color] = 1;
-                }
-            }
-
-            foreach($colorArray as $item=>$count) {
-                echo $item.': '.$count.'<BR>';
+            if(count($vehicles) !== 0){
+              echo '<h1>Stats for Color</h1>';
+              foreach($vehicles as $vehicle){
+                  if(key_exists($vehicle->Color,$colorArray)){
+                      $colorArray[$vehicle->Color] += 1;
+                  } else {
+                      $colorArray[$vehicle->Color] = 1;
+                  }
+              }
+              foreach($colorArray as $item=>$count) {
+                  echo $item.': '.$count.'<BR>';
+              }
             }
             echo '</div>';
         }
@@ -380,31 +424,37 @@ class Page {
                     <TD>'.$col->Description.'</TD>
                     <TD>'.$col->Wheels.'</TD>
                     <TD>'.$col->FuelType.'</TD>
-                    <TD><A HREF="finalproject-edit.php?tables=Transportation Type&id='.$col->TransID.'">Update</A></TD>
-                    <TD><A HREF="?tables=Transportation Type&action=delete&id='.$col->TransID.'">Delete</A></TD>
+                    <TD class="actionLinks"><A HREF="finalproject-edit.php?tables=Transportation Type&id='.$col->TransID.'">Update</A></TD>
+                    <TD class="actionLinks"><A HREF="?tables=Transportation Type&action=delete&id='.$col->TransID.'">Delete</A></TD>
                     </TR>';
                  }
-               } ?>
-                </tbody>
-                </table>
-                <div>
-                <h1>Stats for Fuel Type</h1>
-                <?php
+                 echo '</tbody>
+                 </table>
+                 <div>';
+               }else{
+                 echo
+                   '</tbody>
+                   </table>
+                   <div><BR>No results found';
+               }
                 $fuelArray = [];
-                foreach($type as $col){
-                    if(key_exists($col->FuelType, $fuelArray)) {
-                        $fuelArray[$col->FuelType] += 1;
-                    } else {
-                        $fuelArray[$col->FuelType] = 1;
-                    }
-                }
-                foreach($fuelArray as $item=>$count) {
-                    echo $item.': '.$count.'<BR>';
+                if(count($type) !== 0){
+                  echo '<h1>Stats for Fuel Type</h1>';
+                  foreach($type as $col){
+                      if(key_exists($col->FuelType, $fuelArray)) {
+                          $fuelArray[$col->FuelType] += 1;
+                      } else {
+                          $fuelArray[$col->FuelType] = 1;
+                      }
+                  }
+                  foreach($fuelArray as $item=>$count) {
+                      echo $item.': '.$count.'<BR>';
+                  }
                 }
                 echo '</div>';
-
             }
 
+        //Display the search form
         function searchForm() { ?>
             <FORM METHOD="POST" ACTION="">
             <INPUT TYPE = "TEXT" NAME="searchTerm">

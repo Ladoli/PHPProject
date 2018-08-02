@@ -51,12 +51,10 @@ if($tableName === "Transportation Type"){
             exit;
         }else {
 
-                //We have the right data, lets go ahead and add the customer via the customer mapper
                 unset($_GET['id']);
                 unset($_GET['action']);
                 $newid = $objMapper->create($_POST);
 
-                //Display a message to the user that the customer has been created
                 echo '<DIV CLASS="alert alert-success">New '.$tableName.' '.$newid.' has been created!<BR></DIV>';
         }
 
@@ -79,12 +77,10 @@ if($tableName === "Transportation Type"){
             exit;
         } else {
 
-                //We have the right data, lets go ahead and add the customer via the customer mapper
                 unset($_GET['id']);
                 unset($_GET['action']);
                 $newid = $objMapper->create($_POST);
 
-                //Display a message to the user that the customer has been created
                 echo '<DIV CLASS="alert alert-success">New '.$tableName.' '.$newid.' has been created!<BR></DIV>';
         }
 
@@ -109,12 +105,10 @@ if($tableName === "Transportation Type"){
             exit;
         } else {
 
-                //We have the right data, lets go ahead and add the customer via the customer mapper
                 unset($_GET['id']);
                 unset($_GET['action']);
                 $newid = $objMapper->create($_POST);
 
-                //Display a message to the user that the customer has been created
                 echo '<DIV CLASS="alert alert-success">New '.$tableName.' '.$newid.' has been created!<BR></DIV>';
         }
 
@@ -125,7 +119,7 @@ if($tableName === "Transportation Type"){
 if (isset($_GET['action']) && $_GET['action'] === "delete" && isset($_GET['id']))   {
     //Delete the object
     $results = $objMapper->delete($_GET['id']);
-    echo '<DIV CLASS="alert alert-success">Customer '.$results.' has been deleted.</DIV>';
+    echo '<DIV CLASS="alert alert-success">'.$tableName.' '.$results.' has been deleted.</DIV>';
 }
 
 $page->tableChooser();

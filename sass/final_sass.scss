@@ -17,6 +17,20 @@ table {
                 border-bottom: 1.5px solid nth($color,$i);
                 padding: 10px;
             }
+            &:hover {
+              td{
+                  &:not(.actionLinks){
+                    text-shadow:
+                        0px 0px 15px nth($color,$i),
+                        0px 0px 25px rgb(250, 255, 255),
+                        0px 0px 50px nth($color,$i),
+                        0px 0px 15px nth($color,$i),
+                        0px 0px 25px rgb(250, 255, 255),
+                        0px 0px 50px nth($color,$i);
+                        transition: text-shadow .5s;
+                  }
+                }
+            }
         }
     }
 
@@ -30,7 +44,14 @@ a {
     color: #800880;
     text-decoration: none;
      &:hover {
-        text-decoration: underline;
+       text-shadow:
+     			0px 0px 15px rgb(75, 0, 130),
+     			0px 0px 25px rgb(250, 255, 255),
+     			0px 0px 50px rgb(0, 255, 255),
+     			0px 0px 15px rgb(75, 0, 130),
+     			0px 0px 25px rgb(250, 255, 255),
+     			0px 0px 50px rgb(230,230,250);
+     			transition: text-shadow .5s;
      }
   }
 

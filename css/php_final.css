@@ -1,3 +1,7 @@
+body{
+  background-image: linear-gradient(20deg, rgb(0,0,0),rgb(10,10,10), rgb(5,5,5),rgb(10,10,10), rgb(0,0,0));
+}
+
 input {
   display: inline-block;
   border-radius: 5px;
@@ -42,4 +46,31 @@ form {
 
 .tableLinks{
   font-size: 40px;
+}
+
+.actionLinks{
+  font-weight: 700;
+}
+
+.addForm{
+  border-radius: 10px;
+  border: solid 1px rgb(40,40,40);
+  padding: 20px;
+  display: inline-block;
+  width: 80%;
+  background-image: linear-gradient(160deg, rgb(40,40,40),rgb(10,10,10), rgb(15,15,15),rgb(10,10,10), rgb(40,40,40));
+}
+
+.addForm div{
+  display: inline-block;
+  width: 24%;
+}
+
+.addForm div input{
+  width: 80%;
+}
+
+select{
+  border-radius: 5px;
+  width: 80%;
 }

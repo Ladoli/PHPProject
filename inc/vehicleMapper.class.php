@@ -16,7 +16,7 @@ class VehicleMapper    {
         validateNumber($postdata['typeId'],1,"Trans ID is invalid or is below 1.");
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
-        $vehicle = new Vehicle(cleanString($postdata['makeModel']), cleanString($postdata['color']), $postdata['ownerId'], $postdata['typeId']);
+        $vehicle = new Vehicle(cleanString($postdata['makeModel'],40), cleanString($postdata['color'],25), $postdata['ownerId'], $postdata['typeId']);
 
         //new PDOAgent
         $p =new PDOAgent("mysql", DBUSER,DBPASSWD,"localhost", DBNAME);
@@ -40,8 +40,9 @@ class VehicleMapper    {
         //Disconnect from the database
         $p->disconnect();
 
-        if ($p->rowcount != 1)  {
-            trigger_error("Something went horribly wrong!");
+        if ($p->rowcount < 1)  {
+          echo '<DIV CLASS="alert alert-danger">Something went horribly wrong!</DIV>';
+            returnForm();
             die();
         }
 
@@ -73,8 +74,8 @@ class VehicleMapper    {
         $p->connect();
 
         $bindParams = ['VehicleID' =>$vehicle['id'],
-            'MakeModel' =>cleanString($vehicle['makeModel']),
-            'Color' =>cleanString($vehicle['color']),
+            'MakeModel' =>cleanString($vehicle['makeModel'],40),
+            'Color' =>cleanString($vehicle['color'],25),
             'OwnerID' =>$vehicle['ownerId'],
             'TypeID' =>$vehicle['typeId']
         ];
