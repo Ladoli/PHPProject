@@ -2,7 +2,7 @@
 
 class Page {
 
-    private $title = "Emelie";
+    private $title = "Team MACaroni";
 
     //Load relevant javascript files.
     //Load external files such as Google fonts
@@ -95,17 +95,17 @@ class Page {
        ?>
        <FORM class="addForm" METHOD="POST" ACTION="">
          <div>
-          <LABEL FOR="name">Name</LABEL><br>
+          <LABEL FOR="name">Name</LABEL><BR>
           <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Full Name">
          </div>
 
         <div>
-          <LABEL FOR="city">City</LABEL><br>
+          <LABEL FOR="city">City</LABEL><BR>
           <INPUT TYPE="text" NAME="city" ID="city">
         </div>
 
         <div>
-          <LABEL FOR="gender">Gender</LABEL><br>
+          <LABEL FOR="gender">Gender</LABEL><BR>
           <SELECT NAME="gender" ID="gender">
               <OPTION VALUE="Female" SELECTED>Female</OPTION>
               <OPTION VALUE="Male">Male</OPTION>
@@ -114,11 +114,11 @@ class Page {
         </div>
 
         <div>
-          <LABEL FOR="familySize">Family Size</LABEL><br>
+          <LABEL FOR="familySize">Family Size</LABEL><BR>
           <INPUT TYPE="text" NAME="familySize" ID="familySize" PLACEHOLDER="Immediate Family">
         </div>
-        <br>
-        <br>
+        <BR>
+        <BR>
         <INPUT TYPE="SUBMIT" VALUE="Add Owner">
 
     </FORM>
@@ -128,26 +128,26 @@ class Page {
        ?>
        <FORM class="addForm" METHOD="POST" ACTION="">
         <div>
-          <LABEL FOR="makeModel">Make & Model</LABEL><br>
+          <LABEL FOR="makeModel">Make & Model</LABEL><BR>
           <INPUT TYPE="text" NAME="makeModel" ID="makeModel">
         </div>
 
         <div>
-          <LABEL FOR="color">Color</LABEL><br>
+          <LABEL FOR="color">Color</LABEL><BR>
           <INPUT TYPE="text" NAME="color" ID="color">
         </div>
 
         <div>
-          <LABEL FOR="ownerId">OwnerID</LABEL><br>
+          <LABEL FOR="ownerId">OwnerID</LABEL><BR>
           <INPUT TYPE="text" NAME="ownerId" ID="ownerId">
         </div>
 
         <div>
-          <LABEL FOR="typeId">TypeID</LABEL><br>
+          <LABEL FOR="typeId">TypeID</LABEL><BR>
           <INPUT TYPE="text" NAME="typeId" ID="typeId">
         </div>
-          <br>
-          <br>
+          <BR>
+          <BR>
         <INPUT TYPE="SUBMIT" VALUE="Add Vehicle">
 
     </FORM>
@@ -157,23 +157,23 @@ class Page {
 
        <FORM class="addForm" METHOD="POST" ACTION="">
          <div>
-          <LABEL FOR="name">Name</LABEL><br>
+          <LABEL FOR="name">Name</LABEL><BR>
           <INPUT TYPE="text" NAME="name" ID="name" PLACEHOLDER="Bus, Plane, etc.">
         </div>
         <div>
-          <LABEL FOR="description">Description</LABEL><br>
+          <LABEL FOR="description">Description</LABEL><BR>
           <INPUT TYPE="text" NAME="description" ID="description">
         </div>
         <div>
-          <LABEL FOR="wheels">Wheels</LABEL>
+          <LABEL FOR="wheels">Wheels</LABEL><BR>
           <INPUT TYPE="text" NAME="wheels" ID="wheels">
         </div>
         <div>
-          <LABEL FOR="fuel">Fuel</LABEL>
+          <LABEL FOR="fuel">Fuel</LABEL><BR>
           <INPUT TYPE="text" NAME="fuel" ID="fuel" PLACEHOLDER="Gas, Diesel, etc.">
         </div>
-        <br>
-        <br>
+        <BR>
+        <BR>
         <INPUT TYPE="SUBMIT" VALUE="Add Transportation Type">
 
     </FORM>

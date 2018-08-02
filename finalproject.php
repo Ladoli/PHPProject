@@ -18,7 +18,6 @@ require_once('inc/page.inc.php');
 
 $page = new Page();
 
-
 $page->header();
 $page->searchForm();
 //Header
