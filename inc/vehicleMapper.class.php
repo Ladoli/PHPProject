@@ -12,8 +12,8 @@ class VehicleMapper    {
 
     function create($postdata)  {
 
-        validateNumber($postdata['ownerId'],1,"Owner ID is invalid or is below 1.");
-        validateNumber($postdata['typeId'],1,"Trans ID is invalid or is below 1.");
+        validateNumber($postdata['ownerId'],1,9999,"Owner ID is invalid or not within range 1-9999.");
+        validateNumber($postdata['typeId'],1,9999,"Trans ID is invalid or not within range 1-9999.");
         //Using passed data, add object to the database. We assume ID is automatically generated.
         //Insert a new customer based on the post data that was inserted
         $vehicle = new Vehicle(cleanString($postdata['makeModel'],40), cleanString($postdata['color'],25), $postdata['ownerId'], $postdata['typeId']);
@@ -53,7 +53,7 @@ class VehicleMapper    {
 
     function read($id) {
         //Get the data of Object with passed ID. Return object Object1 constructed with the data
-        validateNumber($id,1,"Tried to read data of invalid entry");
+        validateNumber($id,1,9999,"Tried to read data of invalid entry");
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost", DBNAME);
         $p->connect();
         $bindParams = ['id'=>$id];
@@ -66,9 +66,9 @@ class VehicleMapper    {
 
     function update($vehicle)   {
         //Update the data of Object with passed ID
-        validateNumber($vehicle['id'],1,"Vehicle ID is invalid or is below 1.");
-        validateNumber($vehicle['ownerId'],1,"Owner ID is invalid or is below 1.");
-        validateNumber($vehicle['typeId'],1,"Trans ID is invalid or is below 1.");
+        validateNumber($vehicle['id'],1,9999,"Vehicle ID is invalid or not within range 1-9999.");
+        validateNumber($vehicle['ownerId'],1,9999,"Owner ID is invalid or not within range 1-9999.");
+        validateNumber($vehicle['typeId'],1,9999,"Trans ID is invalid or not within range 1-9999.");
 
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();
@@ -96,7 +96,7 @@ class VehicleMapper    {
 
     function delete($id)   {
         //Delete the data of the object with the passed ID
-        validateNumber($id,1,"Vehicle ID is invalid or is below 1.");
+        validateNumber($id,1,9999,"Vehicle ID is invalid or not within range 1-9999.");
 
         $p = new PDOAgent("mysql",DBUSER,DBPASSWD,"localhost",DBNAME);
         $p->connect();

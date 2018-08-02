@@ -25,8 +25,8 @@ function cleanString($string,$limit){
 }
 
 //Check if input is a number, if not, display error and die
-function validateNumber($num, $min, $message){
-  if(filter_var($num, FILTER_VALIDATE_INT) === 0 || filter_var($num, FILTER_VALIDATE_INT,array("options" => array("min_range"=>$min)))) {
+function validateNumber($num, $min, $max, $message){
+  if(filter_var($num, FILTER_VALIDATE_INT) === 0 || filter_var($num, FILTER_VALIDATE_INT,array("options" => array("min_range"=>$min,"max_range"=>$max)))) {
     return;
   }else{
     echo '<DIV CLASS="alert alert-danger">'. $message.'</DIV>';

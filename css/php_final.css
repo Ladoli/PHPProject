@@ -52,7 +52,7 @@ form {
   font-weight: 700;
 }
 
-.addForm{
+.entryForm{
   border-radius: 10px;
   border: solid 1px rgb(40,40,40);
   padding: 20px;
@@ -61,12 +61,12 @@ form {
   background-image: linear-gradient(160deg, rgb(40,40,40),rgb(10,10,10), rgb(15,15,15),rgb(10,10,10), rgb(40,40,40));
 }
 
-.addForm div{
+.entryForm div{
   display: inline-block;
   width: 24%;
 }
 
-.addForm div input{
+.entryForm div input{
   width: 80%;
 }
 
